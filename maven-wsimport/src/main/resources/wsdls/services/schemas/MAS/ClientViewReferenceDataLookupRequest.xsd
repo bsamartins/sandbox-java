@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.aib.ie/schemas/Request/ClientViewReferenceDataLookup" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:baseReq="http://www.aib.ie/schemas/Request" xmlns="http://www.aib.ie/schemas/Request/ClientViewReferenceDataLookup" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation/>
+	</xs:annotation>
+	<xs:import namespace="http://www.aib.ie/schemas/Request" schemaLocation="../BaseServiceRequest.xsd"/>
+	<xs:element name="Request">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="baseReq:requestType">
+					<xs:sequence>
+						<xs:element name="ClientViewReferenceDataLookup" type="transType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ClientViewReferenceDataLookup" type="transType"/>
+	<xs:complexType name="transType">
+		<xs:sequence>
+			<xs:element name="refType" type="reqField"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="reqField">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:anyAttribute processContents="skip"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="reqList">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:any processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

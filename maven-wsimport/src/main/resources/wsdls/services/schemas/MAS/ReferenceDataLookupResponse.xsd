@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+	targetNamespace="http://www.aib.ie/schemas/Response/ReferenceDataLookup" 
+	xmlns="http://www.aib.ie/schemas/Response/ReferenceDataLookup" 
+	xmlns:baseResp="http://www.aib.ie/schemas/Response" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation/>
+	</xs:annotation>
+	<xs:import namespace="http://www.aib.ie/schemas/Response" schemaLocation="../BaseServiceResponse.xsd"/>
+	<xs:element name="Response">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ReferenceDataLookup">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="baseResp:responseType">
+								<xs:sequence>
+								   <xs:element name="CommonFields" minOccurs="0" maxOccurs="1"/>
+								   <xs:element name="Result" type="ResultType" />
+								</xs:sequence>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="ResultType">
+		<xs:sequence>
+			<xs:element name="MasOperation" type="MasOperationType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MasOperationType">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element name="Field" type="FieldType" minOccurs="0"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="FieldType">
+		<xs:sequence>
+			<xs:element name="Value" type="xs:string" />
+		</xs:sequence>
+		<xs:attribute name="name" type="FieldValueEnum" use="required"/>
+	</xs:complexType>
+	<xs:simpleType name="FieldValueEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="REFERENCE_DATA_ID">
+				<xs:annotation>
+				   <xs:documentation>REFERENCE_DATA_ID</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>	
+			<xs:enumeration value="REFERENCE_TYPE_ID">
+				<xs:annotation>
+				   <xs:documentation>REFERENCE_TYPE_ID</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>	
+			<xs:enumeration value="REFERENCE_VALUE">
+				<xs:annotation>
+				   <xs:documentation>REFERENCE_VALUE</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>	
+			<xs:enumeration value="ROI">
+				<xs:annotation>
+				   <xs:documentation>ROI</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>	
+			<xs:enumeration value="FTB">
+				<xs:annotation>
+				   <xs:documentation>FTB</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GB">
+				<xs:annotation>
+				   <xs:documentation>GB</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>	
+			<xs:enumeration value="ACTIVE">
+				<xs:annotation>
+				   <xs:documentation>ACTIVE</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>	
+			<xs:enumeration value="REFERENCE_TYPE">
+				<xs:annotation>
+				   <xs:documentation>REFERENCE_TYPE</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>	
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

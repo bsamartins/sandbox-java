@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.aib.ie/schemas/Request" xmlns="http://www.aib.ie/schemas/Request" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="requestType">
+		<xs:sequence>
+			<xs:element name="Log" type="LogType"/>
+			<xs:element name="ID" type="IDType"/>
+			<xs:element name="regionCode" type="regionCodeType"/>
+			<xs:element name="sourceNSC" type="sourceNSCType"/>
+			<xs:element name="staffNumber" type="staffNumberType"/>
+			<xs:element name="deviceId" type="deviceIdType" minOccurs="0"/>
+			<xs:element name="Transaction" type="TransactionType"/>
+			<xs:element name="TransactionVersion" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="LogType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Y"/>
+			<xs:enumeration value="N"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="IDType">
+		<xs:sequence>
+			<xs:element name="version" type="xs:string"/>
+			<xs:element name="AppID" type="xs:string"/>
+			<xs:element name="AppName" type="xs:string"/>
+			<xs:element name="UsrID" type="xs:string"/>
+			<xs:element name="UnqID" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="regionCodeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ROI"/>
+			<xs:enumeration value="FTB"/>
+			<xs:enumeration value="GB"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="sourceNSCType">
+		<xs:restriction base="xs:integer">
+			<xs:pattern value="[92][3][0-9]{4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="staffNumberType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="deviceIdType">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="TransactionType">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+</xs:schema>

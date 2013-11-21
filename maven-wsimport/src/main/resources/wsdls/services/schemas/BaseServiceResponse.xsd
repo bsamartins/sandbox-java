@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by BE (Allied Irish Banks plc) -->
+<xs:schema targetNamespace="http://www.aib.ie/schemas/Response" xmlns="http://www.aib.ie/schemas/Response" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="errorNodeType">
+		<xs:sequence>
+			<xs:element name="errorCode">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="actualHostCode" type="xs:string" use="required"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="errorMsg" type="xs:string"/>
+			<xs:element name="shortErrorMsg" type="xs:string" minOccurs="0"/>
+			<xs:element name="errorSev" type="xs:string"/>
+			<xs:element name="errorSource" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--This type describes the FieldType content-->
+	<xs:simpleType name="FieldType">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<!-- This is the base Response. It will be extended by individual services to provide the fields structure type -->
+	<xs:complexType name="responseType">
+		<xs:sequence>
+			<xs:element name="errorNode" type="errorNodeType"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" 
+	xmlns:reqsel="http://www.aib.ie/schemas/Request/ReferenceDataLookup" 
+	xmlns:respsel="http://www.aib.ie/schemas/Response/ReferenceDataLookup" 
+	xmlns:tns="http://www.aib.ie/wsdl/ReferenceDataLookup" 
+	name="ReferenceDataLookup" 
+	targetNamespace="http://www.aib.ie/wsdl/ReferenceDataLookup">
+	<wsdl:types>
+		<xs:schema>
+			<xs:import namespace="http://www.aib.ie/schemas/Request/ReferenceDataLookup" schemaLocation="../../schemas/MAS/ReferenceDataLookupRequest.xsd"/>
+			<xs:import namespace="http://www.aib.ie/schemas/Response/ReferenceDataLookup" schemaLocation="../../schemas/MAS/ReferenceDataLookupResponse.xsd"/>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="ResponseMessage">
+		<wsdl:part name="body" element="respsel:Response"/>
+	</wsdl:message>
+	<wsdl:message name="RequestMessage">
+		<wsdl:part name="body" element="reqsel:Request"/>
+	</wsdl:message>
+	<wsdl:portType name="ReferenceDataLookupPortType">
+		<wsdl:operation name="ReferenceDataLookupOperation" parameterOrder="input">
+			<wsdl:input message="tns:RequestMessage"/>
+			<wsdl:output message="tns:ResponseMessage"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ReferenceDataLookupBinding" type="tns:ReferenceDataLookupPortType">
+		<wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+		<wsdl:operation name="ReferenceDataLookupOperation">
+			<wsdlsoap:operation soapAction="ReferenceDataLookupOperation"/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ReferenceDataLookupService">
+		<wsdl:documentation/>
+		<wsdl:port name="ReferenceDataLookupPort" binding="tns:ReferenceDataLookupBinding">
+			<wsdlsoap:address location="http://localhost:9731/plserver"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
