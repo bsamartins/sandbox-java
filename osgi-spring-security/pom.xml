@@ -18,37 +18,7 @@
           			<source>1.6</source>
           			<target>1.6</target>
         		</configuration>
-      		</plugin>		
-			<plugin>
-				<groupId>org.apache.felix</groupId>
-				<artifactId>maven-bundle-plugin</artifactId>
-				<extensions>true</extensions>
-				<configuration>
-					<instructions>
-					
-            			<Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
-                    	<Embed-Transitive>false</Embed-Transitive>
-                    	<Export-Package>
-                        	org.bmartins.*
-                        </Export-Package>                                            						
-                    	<Include-Resource>
-							{maven-resources}
-						</Include-Resource>				
-					</instructions>
-				</configuration>
-			</plugin>      		
-	      	<plugin>
-	        	<groupId>org.apache.sling</groupId>
-	        	<artifactId>maven-sling-plugin</artifactId>
-	        	<executions>
-	          		<execution>
-	            		<id>deploy-bundle</id>
-	            		<goals>
-	              			<goal>install</goal>
-	            		</goals>
-	          		</execution>
-	        	</executions>
-	      	</plugin>
+      		</plugin>
         	<plugin>
                 <!-- This will create the OSGI-INF for us that handles the Activator Class for us
                 we now auto-generate the details in our bundle with this plug-in-->
@@ -70,7 +40,39 @@
 						<version>3.0.15</version>
 					</dependency>
                 </dependencies>
-            </plugin>         	      	
+            </plugin>           		
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+					
+            			<Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
+                    	<Embed-Transitive>false</Embed-Transitive>
+                    	<Export-Package>
+                        	org.bmartins.*
+                        </Export-Package>                                            						
+                    	<Include-Resource>
+							{maven-resources}
+						</Include-Resource>				
+					</instructions>
+				</configuration>
+			</plugin>      		
+      				
+	      	<plugin>
+	        	<groupId>org.apache.sling</groupId>
+	        	<artifactId>maven-sling-plugin</artifactId>
+	        	<executions>
+	          		<execution>
+	            		<id>deploy-bundle</id>
+	            		<goals>
+	              			<goal>install</goal>
+	            		</goals>
+	          		</execution>
+	        	</executions>
+	      	</plugin>
+    	      	
 	    </plugins>
     </build>
 			
