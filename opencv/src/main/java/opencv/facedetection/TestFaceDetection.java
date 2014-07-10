@@ -10,6 +10,8 @@ import java.sql.Savepoint;
 
 import javax.imageio.ImageIO;
 
+import opencv.OpenCVUtils;
+
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
@@ -22,6 +24,10 @@ import org.opencv.objdetect.CascadeClassifier;
 
 public class TestFaceDetection {
 	
+	static {
+		OpenCVUtils.loadLibrary();
+	}
+
 	private static final String FACE_CASCADE_NAME = "facade/haarcascade_frontalface_alt.xml";
 	private static final String EYES_CASCADE_NAME = "facade/haarcascade_eye_tree_eyeglasses.xml";
 	
@@ -29,8 +35,6 @@ public class TestFaceDetection {
 	private static CascadeClassifier eyesCascade;
 	
 	public static void main(String[] args) throws Exception {
-		
-		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 		
 		faceCascade = new CascadeClassifier(FACE_CASCADE_NAME);
 		eyesCascade = new CascadeClassifier(EYES_CASCADE_NAME);
