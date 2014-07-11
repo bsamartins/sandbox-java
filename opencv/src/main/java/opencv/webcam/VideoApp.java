@@ -15,7 +15,7 @@ import org.opencv.highgui.VideoCapture;
 import swing.JImage;
 import swing.JImage.ImageScale;
 
-public class WebCamApp extends JFrame implements WindowListener {
+public class VideoApp extends JFrame implements WindowListener {
 
 	static {
 		OpenCVUtils.loadLibrary();
@@ -25,11 +25,8 @@ public class WebCamApp extends JFrame implements WindowListener {
 	private JImage image;
 	private Thread thread;
 	
-	public static void main(String[] args) throws Exception  {
-		
-		getCallingClass();
-		
-		WebCamApp app = new WebCamApp();
+	public static void main(String[] args) throws Exception  {		
+		VideoApp app = new VideoApp();
 		app.run();
 	}
 
@@ -129,13 +126,5 @@ public class WebCamApp extends JFrame implements WindowListener {
 
 	@Override
 	public void windowOpened(WindowEvent arg0) {
-	}	
-	
-	private static void getCallingClass() {
-		StackTraceElement[] stack = new Exception().getStackTrace();
-		for(StackTraceElement element : stack) {
-			System.out.println(element);
-		}
-		System.out.println(stack);
 	}	
 }

@@ -15,7 +15,6 @@ public class FaceDetection {
 
 	private static final String FACE_CASCADE_NAME = "facade/haarcascade_frontalface_alt.xml";
 	private static final String EYES_CASCADE_NAME = "facade/haarcascade_eye_tree_eyeglasses.xml";
-	private static final String WINDOW_NAME = "Detect Face";
 	
 	private static CascadeClassifier faceCascade;
 	private static CascadeClassifier eyesCascade;

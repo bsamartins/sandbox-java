@@ -2,7 +2,7 @@ package opencv.motion;
 
 import javax.swing.JFrame;
 
-import opencv.webcam.WebCamApp;
+import opencv.webcam.VideoApp;
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
@@ -10,7 +10,7 @@ import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
-public class MotionDetectionApp extends WebCamApp {
+public class MotionDetectionApp extends VideoApp {
 
 	private Mat lastImageMat;
 	private Mat lastDiffMat;

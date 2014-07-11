@@ -8,11 +8,9 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Transparency;
-import java.awt.Window;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 public class JImage extends JPanel {
 	

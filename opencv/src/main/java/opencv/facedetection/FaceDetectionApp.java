@@ -2,15 +2,15 @@ package opencv.facedetection;
 
 import javax.swing.JFrame;
 
+import opencv.webcam.VideoApp;
+
 import org.opencv.core.Mat;
 
-import opencv.webcam.WebCamApp;
-
-public class FaceDetectionApp extends WebCamApp {
+public class FaceDetectionApp extends VideoApp {
 
 	public static void main(String[] args) throws Exception {
 		FaceDetectionApp app = new FaceDetectionApp();
-		app.run();
+		app.run(args);
 	}
 	
 	@Override
