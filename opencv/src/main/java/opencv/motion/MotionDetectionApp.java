@@ -25,6 +25,7 @@ public class MotionDetectionApp extends VideoApp {
 		setSize(400, 400);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("Motion Detection");
 	}
 
 	@Override

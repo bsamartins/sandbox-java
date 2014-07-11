@@ -23,5 +23,6 @@ public class FaceDetectionApp extends VideoApp {
 		setSize(400, 400);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("Face Detection");
 	}
 }
