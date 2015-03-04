@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+  <setting name="task-tab">
+    <setting name="show-description" value="true"/>
+  </setting>
+  <setting name="favorites-tab"/>
+  <setting name="command_line-tab"/>
+  <setting name="setup-tab">
+    <setting name="setup">
+      <setting name="custom-gradle-executor"/>
+      <setting name="current-directory" value="C:\Workspaces\java-sandbox\spring-webflow"/>
+      <setting name="log-level" value="DEBUG"/>
+    </setting>
+  </setting>
+  <setting name="SinglePaneUIInstance_splitter-id">
+    <setting name="divider_location" value="344"/>
+  </setting>
+  <setting name="main_panel">
+    <setting name="current-tab" value="Setup"/>
+  </setting>
+  <setting name="Application_window-id">
+    <setting name="window_x" value="66"/>
+    <setting name="window_y" value="150"/>
+    <setting name="window_width" value="1202"/>
+    <setting name="window_height" value="716"/>
+    <setting name="extended-state" value="0"/>
+  </setting>
+</root>
