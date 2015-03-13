@@ -1,13 +1,15 @@
 package org.bmartins.sandbox.springwebflow;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.ComponentScan;
 
-@EnableAutoConfiguration
-@ComponentScan
+@ComponentScan(basePackages="org.bmartins.sandbox.springwebflow")
 public class MainApplication extends SpringApplication {
     public static void main(String args[]) {
-        run(MainApplication.class, args);
+    	new SpringApplicationBuilder()
+        	.showBanner(false)
+        	.sources(MainApplication.class)
+        	.run(args);
     }
 }

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html th:fragment="page">
+<head>
+    <title th:include="this :: title">Hello Spring Boot!</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="../static/css/core.css"           
+    	th:href="@{/css/core.css}"
+        rel="stylesheet" 
+        media="screen" />
+ 	<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap.min.css"
+		th:href="@{/webjars/bootstrap/3.3.2-1/css/bootstrap.min.css}" 
+     	rel="stylesheet" />        
+</head>
+<body>
+	<div class="navbar"></div>
+	<div th:include="this :: content" class="container"></div>
+</body>
+</html>
