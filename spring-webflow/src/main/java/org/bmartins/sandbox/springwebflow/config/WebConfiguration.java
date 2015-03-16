@@ -3,6 +3,7 @@ package org.bmartins.sandbox.springwebflow.config;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import org.bmartins.sandbox.springwebflow.config.support.EmbeddedContainerResourceResolver;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

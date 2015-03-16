@@ -1,4 +1,4 @@
-package org.bmartins.sandbox.springwebflow.config;
+package org.bmartins.sandbox.springwebflow.config.support;
 
 import java.io.IOException;
 import java.io.InputStream;
