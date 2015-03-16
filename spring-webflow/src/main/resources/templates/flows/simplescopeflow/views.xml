@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+	
+    <definition name="simple-scope-view" extends="mainTemplate" templateType="thymeleaf">
+    	<put-attribute name="title" value="flows/simple-scope-flow/view.html :: title"/>    		
+    	<put-attribute name="body" value="flows/simple-scope-flow/view.html :: content"/>
+    </definition>        	
+</tiles-definitions>

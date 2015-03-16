@@ -43,7 +43,7 @@ dependencies {
 	compile 'org.thymeleaf.extras:thymeleaf-extras-springsecurity3:2.1.1.RELEASE'
 	compile 'org.thymeleaf.extras:thymeleaf-extras-conditionalcomments:2.1.1.RELEASE'
 	compile 'javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2.1'
-	compile 'org.springframework.boot:spring-boot-starter-jetty:1.2.2.RELEASE'
+	compile 'org.springframework.boot:spring-boot-starter-security'
 	
 	compile 'org.webjars:bootstrap:3.3.2-1'
 	
