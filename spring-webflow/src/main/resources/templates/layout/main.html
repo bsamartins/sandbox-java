@@ -3,16 +3,39 @@
 <head>    
 	<title tiles:include="title"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+ 	<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap.min.css"
+		th:href="@{/webjars/bootstrap/3.3.2-1/css/bootstrap.min.css}" 
+     	rel="stylesheet" />
     <link href="../static/css/core.css"           
     	th:href="@{/css/core.css}"
         rel="stylesheet" 
-        media="screen" />
- 	<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap.min.css"
-		th:href="@{/webjars/bootstrap/3.3.2-1/css/bootstrap.min.css}" 
-     	rel="stylesheet" />        
+        media="screen" />     	        
 </head>
 <body>
-	<div class="navbar"></div>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+        
+		<div class="navbar navbar-right" th:if="${#authorization.expression('isAuthenticated()')}" style="color: white;">
+			<span sec:authentication="name"></span>
+		</div>
+		<div class="navbar navbar-right" th:if="${not #authorization.expression('isAuthenticated()')}" style="color: white;">
+			<ul class="nav navbar-nav">				
+            	<li><a href="/login">Login</a></li>
+            </ul>
+		</div>        
+		        
+      </div>
+    </nav>
 	<div class="container" tiles:include="body"></div>
 </body>
 </html>

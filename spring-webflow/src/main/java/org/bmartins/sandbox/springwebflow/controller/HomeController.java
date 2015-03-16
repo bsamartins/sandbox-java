@@ -11,7 +11,7 @@ public class HomeController {
 	@Autowired
 	private ThymeleafTilesConfigurer tilesConfigurer;
 	
-	@RequestMapping("/index")
+	@RequestMapping({"/home", "/"})
 	public String index() {		
 		return "index";
 	}
