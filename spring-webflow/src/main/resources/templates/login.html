@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:fragment="title">Login</title>
+</head>
+<body tiles:fragment="content"> 	
+	<form th:action="@{/login}" method="post" class="form-signin">
+		<h2 class="form-signin-heading">Please sign in</h2>
+		
+		<label for="username" class="sr-only">Username</label>
+   		<input type="text" class="form-control" id="username" name="username" placeholder="Username"/>
+		
+		<label for="password" class="sr-only">Password</label>
+   		<input type="password" class="form-control" id="password" name="password" placeholder="Password"/>
+		
+		<button type="submit" class="btn btn-primary btn-block">Login</button>
+	</form>
+</body>
+</html>
