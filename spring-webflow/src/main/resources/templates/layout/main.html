@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html th:fragment="page">
-<head>
-    <title th:include="this :: title">Hello Spring Boot!</title>
+<html>
+<head>    
+	<title tiles:include="title"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="../static/css/core.css"           
     	th:href="@{/css/core.css}"
@@ -13,6 +13,6 @@
 </head>
 <body>
 	<div class="navbar"></div>
-	<div th:include="this :: content" class="container"></div>
+	<div class="container" tiles:include="body"></div>
 </body>
 </html>

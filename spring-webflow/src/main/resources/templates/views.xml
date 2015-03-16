@@ -5,6 +5,9 @@
 
 <tiles-definitions>
 	
-    <definition name="index" extends="mainTemplate" templateType="thymeleaf"/>
+    <definition name="index" extends="mainTemplate" templateType="thymeleaf">
+    	<put-attribute name="title" value="index.html :: title"/>    		
+    	<put-attribute name="body" value="index.html :: content"/>
+    </definition>
     	
 </tiles-definitions>

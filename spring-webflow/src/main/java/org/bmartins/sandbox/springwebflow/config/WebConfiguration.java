@@ -20,11 +20,14 @@ import org.thymeleaf.extras.tiles2.spring4.web.view.ThymeleafTilesView;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.AjaxThymeleafViewResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
-import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
+import org.thymeleaf.templateresolver.TemplateResolver;
 
 @Configuration
 @EnableWebMvc
-public class WebConfiguration extends WebMvcConfigurerAdapter {	
+public class WebConfiguration 
+	extends WebMvcConfigurerAdapter
+	//extends WebMvcAutoConfiguration
+{	
 	
 	@Bean
 	public ThymeleafTilesConfigurer tilesConfigurer() {
@@ -64,17 +67,24 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 	}
 	
 	@Bean
-	public ServletContextTemplateResolver templateResolver() {
-		ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver();
-		templateResolver.setPrefix("/templates/");
+	public TemplateResolver templateResolver() {
+		TemplateResolver templateResolver = new TemplateResolver();
+		templateResolver.setResourceResolver(new EmbeddedContainerResourceResolver());
+		templateResolver.setPrefix("templates/");
 		templateResolver.setTemplateMode("HTML5");
 		return templateResolver;
 	}	
-	
+
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/resources/**")
-			.addResourceLocations("/resources/");
+		
+		if (!registry.hasMappingForPattern("/webjars/**")) {
+	        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+	    }
+		
+		if (!registry.hasMappingForPattern("/**")) {
+			registry.addResourceHandler("/**").addResourceLocations("classpath:/resources/", "classpath:/static/");
+		}
  	}
 	
 	@Bean

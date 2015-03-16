@@ -21,6 +21,7 @@
   	</appender>
   		
 	<logger name="org.springframework" level="TRACE"/>
+	<logger name="org.bmartins" level="ALL"/>
 	<!-- 
 	<logger name="org.thymeleaf" level="DEBUG"/>
 	<logger name="org.apache.tiles2" level="DEBUG"/>
