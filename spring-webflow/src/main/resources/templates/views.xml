@@ -9,5 +9,10 @@
     	<put-attribute name="title" value="index.html :: title"/>    		
     	<put-attribute name="body" value="index.html :: content"/>
     </definition>
-    	
+
+    <definition name="login" extends="mainTemplate" templateType="thymeleaf">
+    	<put-attribute name="title" value="login.html :: title"/>
+    	<put-attribute name="body" value="login.html :: content"/>
+    </definition>
+        	
 </tiles-definitions>
