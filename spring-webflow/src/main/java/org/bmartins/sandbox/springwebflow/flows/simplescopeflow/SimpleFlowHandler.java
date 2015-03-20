@@ -8,22 +8,33 @@ import org.springframework.webflow.execution.FlowExecutionOutcome;
 import org.springframework.webflow.execution.repository.NoSuchFlowExecutionException;
 import org.springframework.webflow.mvc.servlet.AbstractFlowHandler;
 
-public class SimpleScopeFlowHandler extends AbstractFlowHandler {
-    private static final String DEFAULT_URL = "/flows/simpleScope";
-
+public class SimpleFlowHandler extends AbstractFlowHandler {
+	
+    private String flowId = "/flows/simpleScope";
+    
+    public SimpleFlowHandler(String flowId) {  
+    	this.flowId = flowId;
+	}
+    
     @Override
     public String handleExecutionOutcome(FlowExecutionOutcome outcome, HttpServletRequest request,
 	    HttpServletResponse response) {
-    	return DEFAULT_URL;
+    	return flowId;
     }
 
     @Override
     public String handleException(FlowException e, HttpServletRequest request, HttpServletResponse response) {
     	if (e instanceof NoSuchFlowExecutionException) {
-    		return DEFAULT_URL;
+    		return flowId;
     	} else {
     		throw e;
     	}
     }
 
+    @Override
+    public String getFlowId() {    	
+    	return flowId;
+    }
+    
+    
 }

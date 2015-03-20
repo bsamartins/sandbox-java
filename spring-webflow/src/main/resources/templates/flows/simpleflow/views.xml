@@ -6,7 +6,7 @@
 <tiles-definitions>
 	
     <definition name="simple-scope-view" extends="mainTemplate" templateType="thymeleaf">
-    	<put-attribute name="title" value="flows/simple-scope-flow/view.html :: title"/>    		
-    	<put-attribute name="body" value="flows/simple-scope-flow/view.html :: content"/>
+    	<put-attribute name="title" value="flows/simpleflow/view.html :: title"/>    		
+    	<put-attribute name="body" value="flows/simpleflow/view.html :: content"/>
     </definition>        	
 </tiles-definitions>

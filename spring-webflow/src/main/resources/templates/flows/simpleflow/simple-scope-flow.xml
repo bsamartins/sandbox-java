@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml version="1.0" encoding="UTF-8"?>
 <flow xmlns="http://www.springframework.org/schema/webflow"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="
@@ -15,11 +14,13 @@
 		<evaluate expression="bookingService.createBooking(hotelId, currentUser.name)" result="flowScope.booking" />
 	</on-start>
 	-->
+	<!-- 
 	<on-start>		
 		<evaluate expression="System.out.println('Hello World')"/>
 	</on-start>
+	 -->
 	
-	<view-state id="start">
+	<view-state id="start" view="simple-scope-view">
 	
 	</view-state>
 	<!--
