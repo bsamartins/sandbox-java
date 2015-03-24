@@ -56,9 +56,4 @@ public class WebFlowConfig extends AbstractFlowConfiguration {
 	public LocalValidatorFactoryBean validator() {
 		return new LocalValidatorFactoryBean();
 	}		
-	
-//	@Bean
-//	public SimpleFlowHandler simpleScopeFlowHandler() {
-//		return new SimpleFlowHandler("flows/simpleScope");
-//	}	
 }
