@@ -7,7 +7,7 @@
 <body tiles:fragment="content"> 	
 	<form id="currentTimeForm" action="#" method="post" th:action="${flowExecutionUrl}">
 		<span>
-			Current time is: <b><span th:text="${currentTimeModel.date}"></span></b>
+			Current time is: <b><span th:text="${#dates.format(currentTimeModel.date, 'dd/MMM/yyyy HH:mm:ss')}"></span></b>
 		</span>
 		<div>
 			<button type="button" id="refreshBtn" name="_eventId_refresh">Refresh</button>
