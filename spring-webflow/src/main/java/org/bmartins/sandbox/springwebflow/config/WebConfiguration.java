@@ -21,10 +21,8 @@ import org.thymeleaf.extras.springsecurity3.dialect.SpringSecurityDialect;
 import org.thymeleaf.extras.tiles2.dialect.TilesDialect;
 import org.thymeleaf.extras.tiles2.spring4.web.configurer.ThymeleafTilesConfigurer;
 import org.thymeleaf.extras.tiles2.spring4.web.view.FlowAjaxThymeleafTilesView;
-import org.thymeleaf.extras.tiles2.spring4.web.view.ThymeleafTilesView;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.AjaxThymeleafViewResolver;
-import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.TemplateResolver;
 
 @Configuration
@@ -45,14 +43,6 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 	public AjaxThymeleafViewResolver ajaxTilesViewResolver() {
 		AjaxThymeleafViewResolver viewResolver = new AjaxThymeleafViewResolver();
 		viewResolver.setViewClass(FlowAjaxThymeleafTilesView.class);
-		viewResolver.setTemplateEngine(templateEngine());
-		return viewResolver;
-	}
-
-	@Bean
-	public ThymeleafViewResolver tilesViewResolver() {
-		ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
-		viewResolver.setViewClass(ThymeleafTilesView.class);
 		viewResolver.setTemplateEngine(templateEngine());
 		return viewResolver;
 	}

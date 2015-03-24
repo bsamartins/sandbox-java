@@ -15,7 +15,7 @@
 		<on-render>
 			<render fragments="body"/>
 		</on-render>
-		<transition on="next" to="step1" bind="false" validate="false" />
+		<transition on="next" bind="false" validate="false" />
 	</view-state>
 	
 	<view-state id="step1" view="simple-scope-view">
