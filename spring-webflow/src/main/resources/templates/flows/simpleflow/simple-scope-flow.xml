@@ -5,59 +5,38 @@
       	http://www.springframework.org/schema/webflow
       	http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 	
-	<!-- 
-	<secured attributes="ROLE_USER" />
-
-	<input name="hotelId" required="true" />
-	
-	<on-start>		
-		<evaluate expression="bookingService.createBooking(hotelId, currentUser.name)" result="flowScope.booking" />
-	</on-start>
-	-->
-	<!-- 
-	<on-start>		
-		<evaluate expression="System.out.println('Hello World')"/>
-	</on-start>
-	 -->
-	
 	<view-state id="start" view="simple-scope-view">
-	
-	</view-state>
-	<!--
-	<view-state id="enterBookingDetails" model="booking">
-		<binder>
-			<binding property="checkinDate" />
-			<binding property="checkoutDate" />
-			<binding property="beds" />
-			<binding property="smoking" />
-			<binding property="creditCard" />
-			<binding property="creditCardName" />
-			<binding property="creditCardExpiryMonth" />
-			<binding property="creditCardExpiryYear" />
-			<binding property="amenities" />
-		</binder>
+		<on-entry>
+			<set name="viewScope.var1" value="'view'"/>
+			<set name="flowScope.var2" value="'flow'"/>
+			<set name="conversationScope.var3" value="'conversation'"/>
+			<evaluate expression="simpleFlowAction.log('start')"/>			
+		</on-entry>
 		<on-render>
-			<render fragments="body" />
+			<render fragments="body"/>
 		</on-render>
-		<transition on="proceed" to="reviewBooking" />
-		<transition on="cancel" to="cancel" bind="false" />
+		<transition on="next" to="step1" bind="false" validate="false" />
 	</view-state>
 	
-	<view-state id="reviewBooking" model="booking">
+	<view-state id="step1" view="simple-scope-view">
+		<on-entry>
+			<evaluate expression="simpleFlowAction.log('step1')"/>			
+		</on-entry>
 		<on-render>
-			<render fragments="body" />
-		</on-render>
-		<transition on="confirm" to="bookingConfirmed">
-			<evaluate expression="bookingService.persistBooking(booking)" />
-		</transition>
-		<transition on="revise" to="enterBookingDetails" />
-		<transition on="cancel" to="cancel" />
+			<render fragments="body"/>
+		</on-render>		
+		<transition on="next" to="step2" bind="false" validate="false" />
 	</view-state>
 	
-	<end-state id="bookingConfirmed">
-		<output name="confirmed" value="'Your booking is confirmed, you can book another hotel by searching again.'"/>
-	</end-state>
-
-	<end-state id="cancel" />
-	-->
+	<view-state id="step2" view="simple-scope-view">
+		<on-entry>
+			<evaluate expression="simpleFlowAction.log('step2')"/>
+		</on-entry>
+		<on-render>
+			<render fragments="body"/>
+		</on-render>		
+		<transition on="next" to="end" bind="false" validate="false" />
+	</view-state>		
+	<end-state id="end" />
+	
 </flow>

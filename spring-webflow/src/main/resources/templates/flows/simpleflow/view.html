@@ -2,11 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org" 
 	  th:include="main :: page">
 <head>
-    <title th:fragment="title">Simple Scope Flow</title>
+    <title tiles:fragment="title">Simple Scope Flow</title>
 </head>
 <body tiles:fragment="content"> 	
-	<div>
-		Simple Scope Flow
-	</div>
+	<div th:text="'Var 1:' + ${var1}"></div>
+	<div th:text="'Var 2:' + ${var2}"></div>
+	<div th:text="'Var 3:' + ${var3}"></div>
+	<form id="myForm" action="#" method="post" >
+		<button type="submit" id="nextBtn" name="_eventId_next">Next</button>
+	</form>
 </body>
 </html>
