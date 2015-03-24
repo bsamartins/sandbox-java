@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="
+      	http://www.springframework.org/schema/webflow
+      	http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+	
+	<action-state id="start">
+		<set value="currentTimeAction.init()" name="flowScope.currentTimeModel" />
+		<transition to="showTime" />
+	</action-state>
+	
+	<view-state id="showTime" view="current-time-view" model="currentTimeModel">
+		<on-render>
+			<render fragments="body"/>
+		</on-render>		
+		<transition on="refresh" bind="false" validate="false" >
+			<evaluate expression="currentTimeAction.onRefresh(currentTimeModel)"/>
+		</transition>
+	</view-state>
+</flow>
