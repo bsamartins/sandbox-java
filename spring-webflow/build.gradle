@@ -35,15 +35,21 @@ repositories {
 // In this section you declare the dependencies for your production and test code
 dependencies {
     // The production code uses the SLF4J logging API at compile time
-    compile 'org.slf4j:slf4j-api:1.7.7'	
+    compile 'org.slf4j:slf4j-api:1.7.7'
+		
 	compile 'org.springframework.boot:spring-boot-starter-web'
 	compile 'org.springframework.webflow:spring-webflow:2.4.1.RELEASE'
+	compile 'org.springframework.webflow:spring-js-resources:2.4.1.RELEASE'
+	
+	compile 'org.springframework.boot:spring-boot-starter-security'
+	
 	compile 'org.thymeleaf:thymeleaf-spring4:2.1.4.RELEASE'
 	compile 'org.thymeleaf.extras:thymeleaf-extras-tiles2-spring4:2.1.1.RELEASE'
 	compile 'org.thymeleaf.extras:thymeleaf-extras-springsecurity3:2.1.1.RELEASE'
 	compile 'org.thymeleaf.extras:thymeleaf-extras-conditionalcomments:2.1.1.RELEASE'
+	
 	compile 'javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2.1'
-	compile 'org.springframework.boot:spring-boot-starter-security'
+	
 	
 	compile 'org.webjars:bootstrap:3.3.2-1'
 	

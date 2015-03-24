@@ -88,7 +88,8 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 	    }
 		
 		if (!registry.hasMappingForPattern("/**")) {
-			registry.addResourceHandler("/**").addResourceLocations("classpath:/resources/", "classpath:/static/");
+			registry.addResourceHandler("/**")
+				.addResourceLocations("classpath:/resources/", "classpath:/static/", "classpath:/META-INF/");
 		}
  	}
 	
@@ -103,7 +104,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 				dispatcherServlet(), 
 				"/*");
 		return registration;
-	}
+	}	
 	
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
