@@ -9,13 +9,15 @@
 		<on-entry>
 			<set name="viewScope.var1" value="'view'"/>
 			<set name="flowScope.var2" value="'flow'"/>
-			<set name="conversationScope.var3" value="'conversation'"/>
+			<set name="conversationScope.var3" value="'conversation'"/>			
 			<evaluate expression="simpleFlowAction.log('start')"/>			
 		</on-entry>
 		<on-render>
+			<set name="viewScope.nextDisabled" value="false"/>
 			<render fragments="body"/>
 		</on-render>
-		<transition on="next" bind="false" validate="false" />
+		<!-- does not actually render fragment because it's redirecting to another view state -->
+		<transition on="next" to="step1" bind="false" validate="false" />
 	</view-state>
 	
 	<view-state id="step1" view="simple-scope-view">
@@ -23,6 +25,7 @@
 			<evaluate expression="simpleFlowAction.log('step1')"/>			
 		</on-entry>
 		<on-render>
+			<set name="viewScope.nextDisabled" value="false"/>
 			<render fragments="body"/>
 		</on-render>		
 		<transition on="next" to="step2" bind="false" validate="false" />
@@ -33,6 +36,7 @@
 			<evaluate expression="simpleFlowAction.log('step2')"/>
 		</on-entry>
 		<on-render>
+			<set name="viewScope.nextDisabled" value="true"/>
 			<render fragments="body"/>
 		</on-render>		
 		<transition on="next" to="end" bind="false" validate="false" />
