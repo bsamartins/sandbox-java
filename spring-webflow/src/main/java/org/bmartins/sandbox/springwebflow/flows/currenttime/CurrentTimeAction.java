@@ -1,4 +1,4 @@
-package org.bmartins.sandbox.springwebflow.flows.currentTime;
+package org.bmartins.sandbox.springwebflow.flows.currenttime;
 
 import java.util.Date;
 

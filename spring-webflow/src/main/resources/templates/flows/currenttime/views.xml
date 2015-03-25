@@ -6,7 +6,7 @@
 <tiles-definitions>
 	
     <definition name="current-time-view" extends="mainTemplate" templateType="thymeleaf">
-    	<put-attribute name="title" value="flows/currentTime/view.html :: title"/>    		
-    	<put-attribute name="body" value="flows/currentTime/view.html :: content"/>
+    	<put-attribute name="title" value="flows/currenttime/view.html :: title"/>    		
+    	<put-attribute name="body" value="flows/currenttime/view.html :: content"/>
     </definition>        	
 </tiles-definitions>
