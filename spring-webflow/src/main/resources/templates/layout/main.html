@@ -3,9 +3,10 @@
 <head>    
 	<title tiles:include="title"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
  	<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap.min.css"
 		th:href="@{/webjars/bootstrap/3.3.2-1/css/bootstrap.min.css}" 
-     	rel="stylesheet" />
+     	rel="stylesheet" />	     
     <link href="../static/css/core.css"           
     	th:href="@{/css/core.css}"
         rel="stylesheet" 
@@ -14,16 +15,19 @@
     <link rel="stylesheet" type="text/css" 
           href="#" th:href="@{/web-resources/dijit/themes/tundra/tundra.css}" />
     
+    <script type="text/javascript" src="#" th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script type="text/javascript" src="#" th:src="@{/webjars/bootstrap/3.3.2-1/js/bootstrap.min.js}"></script>
+    
     <script type="text/javascript" src="#" th:src="@{/web-resources/dojo/dojo.js}"></script>
     <script type="text/javascript" src="#" th:src="@{/web-resources/spring/Spring.js.uncompressed.js}"></script>
-    <script type="text/javascript" src="#" th:src="@{/web-resources/spring/Spring-Dojo.js.uncompressed.js}"></script>
+    <script type="text/javascript" src="#" th:src="@{/web-resources/spring/Spring-Dojo.js.uncompressed.js}"></script>        
              	        
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#">Spring Webflow</a>
         </div>
         <div id="navbar">
           <ul class="nav navbar-nav">
@@ -37,13 +41,10 @@
             			Flows <span class="caret"></span>
             	</a>     
 				<ul class="dropdown-menu" role="menu">
-            		<li><a href="#">Action</a></li>
-            		<li><a href="#">Another action</a></li>
-            		<li><a href="#">Something else here</a></li>
-            		<li class="divider"></li>
-            		<li><a href="#">Separated link</a></li>
-            		<li class="divider"></li>
-            		<li><a href="#">One more separated link</a></li>
+					<li><a th:href="@{/flows/simpleflow}">Simple</a></li>
+            		<li><a th:href="@{/flows/currenttime}">Current Time</a></li>
+            		<li><a th:href="@{/flows/relatedflows/start}">Related</a></li>            		
+            		<li><a th:href="@{/flows/subflows}">Sub Flows</a></li>
           		</ul>       	
 			</li>
           </ul>
