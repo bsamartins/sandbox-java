@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="
+      	http://www.springframework.org/schema/webflow
+      	http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+	
+	<view-state id="start" view="sub-flows-view">
+		<on-entry>
+			<set name="viewScope.viewVar" value="'view'"/>
+			<set name="flowScope.flowVar" value="'flow'"/>
+			<set name="conversationScope.conversationVar" value="'conversation'"/>
+			<set name="flowScope.flow" value="'Main Flow'"/>			
+		</on-entry>
+		<on-render>
+			<set name="viewScope.nextDisabled" value="false"/>
+			<render fragments="body"/>
+		</on-render>
+		<!-- does not actually render fragment because it's redirecting to another view state -->
+		<transition on="next" to="subFlow1" bind="false" validate="false" />
+	</view-state>
+	
+	<subflow-state id="subFlow1" subflow="flows/subflows/subflow">
+		<transition to="step1"/>
+	</subflow-state>
+	
+	<view-state id="step1" view="sub-flows-view">
+		<on-render>
+			<set name="viewScope.nextDisabled" value="false"/>
+			<render fragments="body"/>
+		</on-render>		
+		<transition on="next" to="end" bind="false" validate="false" />
+	</view-state>
+	
+	<end-state id="end" view="externalRedirect:/"/>
+	
+</flow>
