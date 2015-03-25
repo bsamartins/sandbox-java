@@ -9,3 +9,6 @@ target
 /RemoteSystemsTempFiles
 /spring-webflow/.gradle
 /spring-webflow/.idea
+*.iml
+bin
+.gradle
