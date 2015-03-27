@@ -4,19 +4,29 @@
 <head>
     <title tiles:fragment="title">Simple Scope Flow</title>
 </head>
-<body tiles:fragment="content"> 	
-	<div>Var 1: <span th:text="${var1}"></span></div>
-	<div>Var 2: <span th:text="${var2}"></span></div>
-	<div>Var 3: <span th:text="${var3}"></span></div>
-	<form id="myForm" action="#" method="post" th:action="${flowExecutionUrl}">
-		<button type="button" id="nextBtn" name="_eventId_next" th:disabled="${nextDisabled}">Next</button>
-		<script type="text/javascript">
-        	// <![CDATA[        	            
-            Spring.addDecoration(new Spring.ValidateAllDecoration({elementId:'nextBtn', event:'onclick'}));
-            Spring.addDecoration(new Spring.AjaxEventDecoration({elementId:'nextBtn', event:'onclick', formId:'myForm', params: { _eventId : 'next', fragments: 'myForm' }}));
-            // ]]>
-		</script>		
-	</form>
-	
+<body tiles:fragment="content">
+	<div>
+		<dl class="dl-horizontal"> 	
+			<dt>Var 1</dt>
+			<dd th:text="${var1}"></dd>
+			
+			<dt>Var 2</dt>
+			<dd th:text="${var2}"></dd>
+			
+			<dt>Var 3</dt>
+			<dd th:text="${var3}"></dd>
+		</dl>
+	</div>
+	<div class="pull-right">
+		<form id="myForm" action="#" method="post" th:action="${flowExecutionUrl}">
+			<button type="button" id="nextBtn" name="_eventId_next" th:disabled="${nextDisabled}" class="btn btn-default">Next</button>
+			<script type="text/javascript">
+	        	// <![CDATA[        	            
+	            Spring.addDecoration(new Spring.ValidateAllDecoration({elementId:'nextBtn', event:'onclick'}));
+	            Spring.addDecoration(new Spring.AjaxEventDecoration({elementId:'nextBtn', event:'onclick', formId:'myForm', params: { _eventId : 'next', fragments: 'myForm' }}));
+	            // ]]>
+			</script>		
+		</form>
+	</div>
 </body>
 </html>
