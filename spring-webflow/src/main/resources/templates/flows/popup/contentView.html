@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	  th:include="main :: page">
+<head>
+    <title tiles:fragment="title">Simple Scope Flow</title>
+</head>
+<body tiles:fragment="content"> 		
+	<dl class="dl-horizontal">
+  		<dt>View</dt>
+  		<dd th:text="${viewVar}"></dd>
+  		<dt>Flow</dt>
+  		<dd th:text="${flowVar}"></dd>
+  		<dt>Conversation</dt>
+  		<dd th:text="${conversationVar}"></dd>  		
+	</dl>
+	
+	<form id="myForm" action="#" method="post" th:action="${flowExecutionUrl}">
+		<button type="button" id="nextBtn" name="_eventId_next" class="btn btn-default" th:disabled="${nextDisabled}">Next</button>
+		<script type="text/javascript">
+        	// <![CDATA[        	            
+            Spring.addDecoration(new Spring.ValidateAllDecoration({
+            	elementId:'nextBtn', 
+            	event:'onclick'
+            }));
+            Spring.addDecoration(new Spring.AjaxEventDecoration({
+            	elementId:'nextBtn', 
+            	event:'onclick', 
+            	formId:'myForm',
+            	popup: true,
+            	params: { 
+            		_eventId : 'next', 
+            		fragments: 'myForm' 
+            	}
+            }));
+            // ]]>
+		</script>		
+	</form>
+</body>
+</html>

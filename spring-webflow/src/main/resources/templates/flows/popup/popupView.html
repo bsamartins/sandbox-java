@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	  th:include="main :: page">
+<head>    
+</head>
+<body> 
+	<div class="modal-content" tiles:fragment="popup">
+		<form id="popupForm" action="#" method="post" th:action="${flowExecutionUrl}">
+			<div class="modal-header">
+				Flow Popup
+			</div>
+			<div class="modal-body">
+				<dl class="dl-horizontal">	
+					<dt>View</dt>
+					<dd th:text="${viewVar}"></dd>
+					
+					<dt>Flow</dt>
+					<dd th:text="${flowVar}"></dd>
+					
+					<dt>Conversation</dt>
+					<dd th:text="${conversationVar}"></dd>
+				</dl>			
+			</div>
+			<div class="modal-footer">				
+				<button type="button" id="closeBtn" class="btn btn-default">Close</button>
+				<script type="text/javascript">
+		        	// <![CDATA[        	            
+		            Spring.addDecoration(new Spring.ValidateAllDecoration({
+		            	elementId:'closeBtn', 
+		            	event:'onclick'
+		            }));
+		            Spring.addDecoration(new Spring.AjaxEventDecoration({
+		            	elementId:'closeBtn', 
+		            	event:'onclick', 
+		            	formId:'popupForm', 
+		            	params: { 
+		            		_eventId : 'close', 
+		            		fragments: 'popupForm' 
+		            	}
+		            }));
+		            // ]]>
+				</script>				
+			</div>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+	
+    <definition name="main-popup-view" extends="mainTemplate" templateType="thymeleaf">
+    	<put-attribute name="title" value="flows/popup/contentView.html :: title" />   		
+    	<put-attribute name="body"  value="flows/popup/contentView.html :: content" />
+    </definition>        	
+    
+    <definition name="popup-popup-view" extends="popupTemplate" templateType="thymeleaf">
+    	<put-attribute name="body" value="flows/popup/popupView.html :: popup" />    	
+    </definition>
+        
+</tiles-definitions>

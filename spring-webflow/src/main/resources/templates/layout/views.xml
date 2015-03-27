@@ -5,6 +5,7 @@
 
 <tiles-definitions>
 	
-    <definition name="mainTemplate" template="layout/main.html" templateType="thymeleaf"/>
+    <definition name="mainTemplate" template="layout/main.html" templateType="thymeleaf"/>    
+    <definition name="popupTemplate" template="layout/popup.html" templateType="thymeleaf"/>
     	
 </tiles-definitions>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="
+      	http://www.springframework.org/schema/webflow
+      	http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+	
+	<view-state id="start" view="main-popup-view">
+		<on-entry>
+			<set name="viewScope.viewVar" value="'view'"/>
+			<set name="flowScope.flowVar" value="'flow'"/>
+			<set name="conversationScope.conversationVar" value="'conversation'"/>
+		</on-entry>
+		<on-render>
+			<set name="viewScope.nextDisabled" value="false"/>
+			<render fragments="content"/>
+		</on-render>
+		<!-- does not actually render fragment because it's redirecting to another view state -->
+		<transition on="next" to="showPopup"/>
+	</view-state>
+	
+	<view-state id="showPopup" view="popup-popup-view" popup="true">
+		<on-render>
+			<render fragments="body"/>
+		</on-render>		
+		<transition on="close" to="closePopup"/>
+	</view-state>
+	
+	<view-state id="closePopup" view="main-popup-view" popup="false">
+		<on-render>
+			<render fragments="body"/>
+		</on-render>			
+		<transition on="next" to="end"/>
+	</view-state>
+	
+	<end-state id="end" view="externalRedirect:/"/>
+	
+</flow>
