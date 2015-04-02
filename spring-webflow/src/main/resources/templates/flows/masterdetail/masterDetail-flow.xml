@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="
+      	http://www.springframework.org/schema/webflow
+      	http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+	
+	<action-state id="start">
+		<set name="flowScope.masterDetailModel" value="masterDetailAction.init()" />
+		<transition to="showCountries" />
+	</action-state>
+	
+	<view-state id="showCountries" view="master-detail-view" model="masterDetailModel">
+		<on-entry>			
+			<set name="viewScope.countryList" value="masterDetailAction.getCountries()"/>
+		</on-entry>		
+		<on-render>
+			<render fragments="master"/>
+		</on-render>
+		<transition on="selectCountry" bind="true">
+			<evaluate expression="masterDetailAction.onCountrySelected(masterDetailModel)"/>
+		</transition>
+		<transition on="next" to="step1" bind="false" validate="false" />
+	</view-state>	
+</flow>
