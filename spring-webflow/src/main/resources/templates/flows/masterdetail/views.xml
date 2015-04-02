@@ -8,7 +8,7 @@
     <definition name="master-detail-view" extends="mainTemplate" templateType="thymeleaf">
     	<put-attribute name="title" value="flows/masterdetail/masterDetail.html :: title"/>    		
     	<put-attribute name="body">
-    		<definition template="flows/masterdetail/masterDetail.html :: content" templateType="thymeleaf">
+    		<definition template="flows/masterdetail/masterDetail.html :: body" templateType="thymeleaf">
     			<put-attribute name="master" value="flows/masterdetail/master.html :: content"/>
     			<put-attribute name="detail" value="flows/masterdetail/detail.html :: content"/>
     		</definition>

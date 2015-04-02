@@ -2,6 +2,7 @@ package org.bmartins.sandbox.springwebflow.flows.masterdetail;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.bmartins.sandbox.springwebflow.data.country.CountryDAO;
 import org.bmartins.sandbox.springwebflow.model.Country;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,10 @@ public class MasterDetailAction {
 	}
 	
 	public void onCountrySelected(MasterDetailModel model) {
-		
+		if(StringUtils.isNotBlank(model.getSelectedCountry())) {
+			Country country = countryDAO.getCountry(model.getSelectedCountry());
+			model.setCountry(country);			
+		}
 	}
 
 	

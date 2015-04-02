@@ -5,47 +5,7 @@
     <title tiles:fragment="title">Simple Scope Flow</title>
 </head>
 <body tiles:fragment="content">
-	<div id="masterDiv"> 	
-		<form action="#" th:object="${masterDetailModel}" id="masterForm" method="post">
-			<table class="table table-hover table-condensed">
-		        <thead>
-		            <tr>
-		            	<th></th>
-		                <th>Code</th>
-		                <th>Name</th>
-		            </tr>
-		        </thead>
-		        <tbody style="max-height: 200px; overflow: auto;">
-		            <tr th:each="country : ${countryList}" 
-		            	th:class="${country.code == masterDetailModel.selectedCountry} ? active : ''" 
-		            	th:id="${'countryRow_' + country.code}">
-		            	
-		            	<td> 
-		            		<input type="radio" th:id="${'countryRadio_' + country.code}" th:field="${masterDetailModel.selectedCountry}" th:value="${country.code}"/>		            		
-		            	</td>
-		            	
-		                <td th:text="${country.code}"></td>
-		                <td th:text="${country.name}"></td>
-						
-					    <script type="text/javascript" th:inline="javascript">
-					       	// <![CDATA[
-							/*					       	            
-					       	var countryRadioId = /*[[${'countryRadio_' + country.code}]]*/
-					       	/*
-					        Spring.addDecoration(new Spring.AjaxEventDecoration({elementId: countryRadioId, event:'onchange', formId:'masterForm', params: { _eventId : 'selectCountry'}}));
-					       	*/
-					       	var countryRowId = /*[[${'countryRow_' + country.code}]]*/
-					        Spring.addDecoration(new Spring.AjaxEventDecoration({elementId: countryRowId, event:'onclick', formId:'masterForm', params: { _eventId : 'selectCountry'}}));
-					        // ]]>
-						</script>			    
-		                
-		            </tr>
-		            <tr th:unless="${countryList}">
-		                <td colspan="3">No countries found</td>
-		            </tr>
-		        </tbody>
-		    </table>
-	    </form>
-    </div>	
+
+
 </body>
 </html>

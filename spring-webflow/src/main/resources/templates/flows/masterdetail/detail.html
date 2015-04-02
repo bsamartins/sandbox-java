@@ -4,7 +4,15 @@
 <head>
     <title tiles:fragment="title">Simple Scope Flow</title>
 </head>
-<body tiles:fragment="content"> 	
-	<div>Detail</div>
+<body tiles:fragment="content"> 		
+	<div th:if="${country != null}">
+		<div>Country</div>
+		<div>
+			<dl>
+				<dt>Name</dt>
+				<dd th:text="${country.name}"></dd>
+			</dl>
+		</div>
+	</div>
 </body>
 </html>

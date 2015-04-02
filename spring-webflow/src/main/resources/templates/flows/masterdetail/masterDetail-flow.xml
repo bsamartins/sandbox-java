@@ -13,13 +13,13 @@
 	<view-state id="showCountries" view="master-detail-view" model="masterDetailModel">
 		<on-entry>			
 			<set name="viewScope.countryList" value="masterDetailAction.getCountries()"/>
+			<set name="viewScope.country" value="masterDetailModel.getCountry()"/>
 		</on-entry>		
 		<on-render>
-			<render fragments="master"/>
+			<render fragments="content"/>
 		</on-render>
 		<transition on="selectCountry" bind="true">
-			<evaluate expression="masterDetailAction.onCountrySelected(masterDetailModel)"/>
+			<evaluate expression="masterDetailAction.onCountrySelected(masterDetailModel)"/>			
 		</transition>
-		<transition on="next" to="step1" bind="false" validate="false" />
 	</view-state>	
 </flow>
