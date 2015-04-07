@@ -1,11 +1,50 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" 
 	  th:include="main :: page">
-<head>
-    <title tiles:fragment="title">Simple Scope Flow</title>
-</head>
 <body tiles:fragment="content">
 
-
+	<script type="text/javascript">
+    	$(document).ready(function() {
+			var remote = new Spring.RemotingHandler();
+			
+			$('#countryTable tbody tr').each(function(i,e) {
+				$(e).click(function() {
+					var countryCode = $(e).attr('data-country-code'); 
+					$('#selectedCountry').val(countryCode);
+					
+					remote.submitForm('masterForm', 'masterForm', { 
+		        		_eventId: 'selectCountry'
+		        	})
+				});
+			})
+    	});
+	</script>
+	
+	<div id="masterDiv"> 	
+		<form action="#" th:object="${masterDetailModel}" id="masterForm" method="post">
+			<table class="table table-hover table-condensed" id="countryTable">
+		        <thead>
+		            <tr>
+		                <th>Code</th>
+		                <th>Name</th>
+		            </tr>
+		        </thead>
+		        <tbody>
+		            <tr th:each="country : ${countryList}" 
+		            	th:class="${country.code == masterDetailModel.selectedCountry} ? active : ''" 
+		            	th:attr="data-country-code=${country.code}"
+		            	th:id="${'countryRow_' + country.code}">
+		            	
+		                <td th:text="${country.code}"></td>
+		                <td th:text="${country.name}"></td>
+		            </tr>
+		            <tr th:unless="${countryList != null and !countryList.isEmpty()}">
+		                <td colspan="2">No countries found</td>
+		            </tr>
+		        </tbody>
+		    </table>
+		    <input type="hidden" th:field="*{selectedCountry}"/>
+	    </form>
+    </div>	
 </body>
 </html>
