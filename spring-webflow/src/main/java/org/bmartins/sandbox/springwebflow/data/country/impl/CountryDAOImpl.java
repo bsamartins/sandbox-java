@@ -21,6 +21,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Repository
 public class CountryDAOImpl implements CountryDAO, InitializingBean {
 
+	private static final String DATA_COUNTRIES_CONTINENT_JSON = "/data/countries/continent.json";
+	private static final String DATA_COUNTRIES_CAPITAL_JSON = "/data/countries/capital.json";
+	private static final String DATA_COUNTRIES_CURRENCY_JSON = "/data/countries/currency.json";
+	private static final String DATA_COUNTRIES_NAMES_JSON = "/data/countries/names.json";
+	private static final String DATA_COUNTRIES_PHONE_JSON = "/data/countries/phone.json";
+
 	private static final Logger LOG = LoggerFactory.getLogger(CountryDAOImpl.class);
 	
 	private List<Country> countries = new ArrayList<>();
@@ -28,21 +34,31 @@ public class CountryDAOImpl implements CountryDAO, InitializingBean {
 	
 	@Override
 	public void afterPropertiesSet() throws Exception {				
-		loadCountryNames();
+		loadCountryDetails();
 		loadContinents();
 		
 		LOG.trace("Countries: {}", countries);
 	}
 
-	private void loadCountryNames() throws Exception {
-		Resource countryNames = new ClassPathResource("/data/countries/names.json");		
-		@SuppressWarnings("unchecked")
-		Map<String, String> countryMap = new ObjectMapper().readValue(countryNames.getInputStream(), Map.class);
+	@SuppressWarnings("unchecked")
+	private void loadCountryDetails() throws Exception {
+		Resource countryNamesJson = new ClassPathResource(DATA_COUNTRIES_NAMES_JSON);
+		Resource countryCapitalsJson = new ClassPathResource(DATA_COUNTRIES_CAPITAL_JSON);
+		Resource countryCurrenciesJson = new ClassPathResource(DATA_COUNTRIES_CURRENCY_JSON);
+		Resource countryPhoneJson = new ClassPathResource(DATA_COUNTRIES_PHONE_JSON);
+				
+		Map<String, String> countryMap = new ObjectMapper().readValue(countryNamesJson.getInputStream(), Map.class);
+		Map<String, String> countryCapitalsMap = new ObjectMapper().readValue(countryCapitalsJson.getInputStream(), Map.class);
+		Map<String, String> countryCurrenciesMap = new ObjectMapper().readValue(countryCurrenciesJson.getInputStream(), Map.class);
+		Map<String, String> countryPhonesMap = new ObjectMapper().readValue(countryPhoneJson.getInputStream(), Map.class);
 		
 		countryMap.forEach((key, value) ->{
 			Country country = new Country();
 			country.setCode(key);
 			country.setName(value);
+			country.setCapital(countryCapitalsMap.get(key));
+			country.setCurrency(countryCurrenciesMap.get(key));
+			country.setPhoneCode(countryPhonesMap.get(key));
 			
 			countries.add(country);
 		});
@@ -50,9 +66,9 @@ public class CountryDAOImpl implements CountryDAO, InitializingBean {
 		countries.sort((c1, c2) -> c1.getCode().compareTo(c2.getCode()));
 	}
 
+	@SuppressWarnings("unchecked")
 	private void loadContinents() throws Exception {
-		Resource continentResource = new ClassPathResource("/data/countries/continent.json");		
-		@SuppressWarnings("unchecked")
+		Resource continentResource = new ClassPathResource(DATA_COUNTRIES_CONTINENT_JSON);				
 		Map<String, String> continentMap = new ObjectMapper().readValue(continentResource.getInputStream(), Map.class);
 		
 		continents = continentMap.values().stream()
