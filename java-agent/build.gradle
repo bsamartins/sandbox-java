@@ -1,0 +1,32 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'eclipse'
+
+group = 'org.bmartins.sandbox'
+version = '0.0.1-SNAPSHOT'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+repositories {
+        
+     maven { url "http://10.30.188.61:8081/nexus/content/repositories/snapshots" }
+     maven { url "http://10.30.188.80:8777/nexus/content/groups/public" }
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
+
+dependencies {
+	compile 'org.javassist:javassist:3.19.0-GA'	
+}
+
+jar {
+	manifest {
+		attributes(
+			//"Main-Class": "name.dhruba.javaagent.MyMainClass",
+			//"Agent-Class": "name.dhruba.javaagent.MyJavaAgent",
+			"Can-Redefine-Classes": true,
+			"Can-Retransform-Classes": true,
+			"Premain-Class": "org.bmartins.sandbox.javaagent.SimpleJavaAgent"
+		)	
+	}
+}
