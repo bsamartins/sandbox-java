@@ -1,0 +1,7 @@
+package org.bmartins.sandbox.springaspectj.config;
+
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class AppConfiguration {	
+}
