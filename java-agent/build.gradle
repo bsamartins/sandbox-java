@@ -17,6 +17,27 @@ repositories {
 
 dependencies {
 	compile 'org.javassist:javassist:3.19.0-GA'	
+	
+	compile 'org.slf4j:slf4j-api:1.7.12'
+}
+
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+	baseName = project.name + '-all'
+	manifest {
+		attributes(
+			//"Main-Class": "name.dhruba.javaagent.MyMainClass",
+			//"Agent-Class": "name.dhruba.javaagent.MyJavaAgent",
+			"Can-Redefine-Classes": true,
+			"Can-Retransform-Classes": true,
+			"Premain-Class": "org.bmartins.sandbox.javaagent.SimpleJavaAgent")
+	}
+	from {
+		configurations.compile.collect {
+			it.isDirectory() ? it : zipTree(it)
+		}
+	}
+	with jar
 }
 
 jar {
@@ -26,7 +47,6 @@ jar {
 			//"Agent-Class": "name.dhruba.javaagent.MyJavaAgent",
 			"Can-Redefine-Classes": true,
 			"Can-Retransform-Classes": true,
-			"Premain-Class": "org.bmartins.sandbox.javaagent.SimpleJavaAgent"
-		)	
+			"Premain-Class": "org.bmartins.sandbox.javaagent.SimpleJavaAgent")
 	}
 }
