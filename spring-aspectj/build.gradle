@@ -27,4 +27,4 @@ dependencies {
 	compile 'org.aspectj:aspectjweaver:1.8.5'	
 }
 
-applicationDefaultJvmArgs = ["-javaagent:C:\\Workspaces\\java-sandbox\\java-agent\\build\\libs\\java-agent-0.0.1-SNAPSHOT.jar"]
+applicationDefaultJvmArgs = ["-javaagent:C:\\Workspaces\\java-sandbox\\java-agent\\build\\libs\\java-agent-all-0.0.1-SNAPSHOT.jar"]

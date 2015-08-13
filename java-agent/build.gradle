@@ -16,8 +16,10 @@ repositories {
 }
 
 dependencies {
-	compile 'org.javassist:javassist:3.19.0-GA'	
+	testCompile 'junit:junit:4.11'
 	
+	compile 'cglib:cglib:3.1'
+	compile 'org.javassist:javassist:3.19.0-GA'		
 	compile 'org.slf4j:slf4j-api:1.7.12'
 }
 
