@@ -11,7 +11,6 @@ public class RankComparator implements Comparator<Rank>{
 	
 	private static final List<Rank> RANK_ORDER = Arrays.asList(
 		StandardRanks.ACE,
-		StandardRanks.ACE,
 		StandardRanks.TWO,
 		StandardRanks.THREE,
 		StandardRanks.FOUR,

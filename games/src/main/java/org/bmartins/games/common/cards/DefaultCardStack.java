@@ -13,7 +13,8 @@ public class DefaultCardStack<C extends Card<?,?>> implements CardStack<C> {
 		return stack.pop();
 	}
 
-	protected void push(C card) {
+	@Override
+	public void push(C card) {
 		stack.push(card);
 	}
 	
@@ -26,7 +27,10 @@ public class DefaultCardStack<C extends Card<?,?>> implements CardStack<C> {
 
 	@Override
 	public C peek() {
-		return stack.peek();
+		if(!stack.isEmpty()) {
+			return stack.peek();			
+		}
+		return null;
 	}
 
 	@Override
@@ -39,8 +43,14 @@ public class DefaultCardStack<C extends Card<?,?>> implements CardStack<C> {
 		return true;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public Stack<C> getStack() {
-		return stack;
+	public Stack<C> getStackView() {
+		return (Stack<C>) stack.clone();
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return stack.isEmpty();
 	}
 }

@@ -20,8 +20,22 @@ public class CrapoGame implements Game {
 	private static final int NUM_CRAPO_CARDS = 13;
 	private static final int NUM_INITIAL_CARDS = 4;
 	
-	private Map<FrenchSuit, CrapoFinalStack> stackingHouse1 = new HashMap<>();
-	private Map<FrenchSuit, CrapoFinalStack> stackingHouse2 = new HashMap<>();
+	public enum StackingPile { 
+		PILE_1(0), 
+		PILE_2(1); 
+		
+		private int index;
+		
+		private StackingPile(int index) {
+			this.index = index;
+		}
+
+		int getIndex() {
+			return index;
+		}		
+	}
+	
+	private Map<FrenchSuit, List<CrapoFinalStack>> stackingHouse = new HashMap<>();
 	
 	private List<CrapoPlayStack> playingHouse = new ArrayList<>();
 	private Map<Player, Stack<StandardCard>> crapoStack = new HashMap<>();
@@ -44,6 +58,14 @@ public class CrapoGame implements Game {
 		this.mainTurnedStack.put(Player.PLAYER_1, new CrapoTrashStack());
 		this.mainTurnedStack.put(Player.PLAYER_2, new CrapoTrashStack());
 
+		for(FrenchSuit suit: FrenchSuit.values()) {
+			List<CrapoFinalStack> stacks = new ArrayList<>();
+			stacks.add(new CrapoFinalStack());
+			stacks.add(new CrapoFinalStack());
+			
+			this.stackingHouse.put(suit, stacks);			
+		}
+		
 		for(int i = 0; i < 8; i++) {
 			this.playingHouse.add(new CrapoPlayStack());	
 		}		
@@ -60,6 +82,8 @@ public class CrapoGame implements Game {
 		
 		initPlayerGame(Player.PLAYER_1, player1Game);
 		initPlayerGame(Player.PLAYER_2, player2Game);
+		
+		determineStartingPlayer();
 	}
 	
 	private void initPlayerGame(Player player, List<StandardCard> game) {
@@ -78,8 +102,6 @@ public class CrapoGame implements Game {
 		// set main stack
 		mainStack = mainStack.subList(0, mainStack.size() - NUM_INITIAL_CARDS);
 		this.mainStack.get(player).addAll(mainStack);
-		
-		determineStartingPlayer();
 	}
 	
 	public Stack<StandardCard> getCrapoStack(Player player) {
@@ -95,11 +117,11 @@ public class CrapoGame implements Game {
 	}
 
 	Stack<StandardCard> getCrapoTurnedStack(Player player) {
-		return crapoTurnedStack.get(player).getStack();
+		return crapoTurnedStack.get(player).getStackView();
 	}
 
 	Stack<StandardCard> getMainTurnedStack(Player player) {
-		return mainTurnedStack.get(player).getStack();
+		return mainTurnedStack.get(player).getStackView();
 	}
 	
 	private void determineStartingPlayer() {
@@ -129,16 +151,39 @@ public class CrapoGame implements Game {
 		}		
 	}
 
-	CrapoFinalStack getStackingHouse(int n, FrenchSuit suit) {
-		if(n == 1) {
-			return stackingHouse1.get(suit);
-		} else if (n == 2) {
-			return stackingHouse2.get(suit);
-		}
-		return null;
+	CrapoFinalStack getStackingHouse(FrenchSuit suit, StackingPile pile) {
+		return stackingHouse.get(suit).get(pile.getIndex());
 	}
 
 	public Player getCurrentPlayer() {
 		return currentPlayer;
 	}	
+	
+	public void tapMainStack() {		
+		Stack<StandardCard> playerMainStack = this.mainStack.get(currentPlayer);
+		CrapoTrashStack playerMainTurnedStack = this.mainTurnedStack.get(currentPlayer);
+		if(playerMainStack.isEmpty()) {
+			// move back on to stack
+			while(playerMainTurnedStack.count() > 1) {
+				StandardCard topCard = playerMainTurnedStack.pop();
+				playerMainStack.push(topCard);
+			}
+		} else {
+			if(!playerMainStack.isEmpty()) {
+				StandardCard card = playerMainStack.pop();
+				playerMainTurnedStack.push(card);				
+			}
+		}
+	}
+	
+	public void tapCrapo() {
+		CrapoStack playerCrapoTurnedStack = this.crapoTurnedStack.get(currentPlayer);
+		Stack<StandardCard> playerCrapoStack = this.crapoStack.get(currentPlayer);
+		if(playerCrapoTurnedStack.isEmpty()) {
+			if(!playerCrapoStack.isEmpty()) {
+				StandardCard card = playerCrapoStack.pop();
+				playerCrapoTurnedStack.push(card);
+			}			
+		}
+	}
 }

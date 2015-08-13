@@ -9,8 +9,10 @@ public class CrapoStack extends DefaultCardStack<StandardCard> {
 	@Override
 	public boolean canStack(StandardCard card) {
 		StandardCard topCard = peek();
-		if(topCard != null) {
-			if(topCard.getRank() == card.getRank()
+		if(topCard == null) {
+			return true;
+		} else {
+			if(topCard.getSuit() == card.getSuit()
 					&& (RankComparator.isRightAfter(card.getRank(), topCard.getRank())
 					|| RankComparator.isRightBefore(card.getRank(), topCard.getRank()))) {
 				return true;
