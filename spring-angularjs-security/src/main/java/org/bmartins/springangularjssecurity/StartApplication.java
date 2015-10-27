@@ -25,9 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
-public class StartApplication 
-	//extends WebSecurityConfigurerAdapter 
-{
+public class StartApplication {
 	
 	@RequestMapping("api/user")
 	public Principal user(Principal user) {
@@ -51,8 +49,10 @@ public class StartApplication
 	      	.httpBasic()	      	
 	      .and()
 	        .authorizeRequests()
-	          .antMatchers("/**.html", "/api/user", "/api/user/logout").permitAll()
-	          .anyRequest().authenticated();
+	          .anyRequest().permitAll()
+	          .antMatchers("/api/user", "/api/user/logout").permitAll()
+	          .antMatchers("/api/**").authenticated()
+	          ;
 		}
 	}
 	

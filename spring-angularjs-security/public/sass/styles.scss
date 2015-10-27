@@ -1,0 +1,60 @@
+@import "bootstrap-compass";
+@import "bootstrap-variables";
+@import "bootstrap";
+
+$nav-bar-background: #5A183F;
+$nav-bar-foreground: #D0B2C3;
+$nav-bar-hover: #E2C9D7;
+
+
+.btn-custom {
+    background-color: #861C5A;
+    color: White;
+    border-color: #58163C;
+
+    &:hover, &:active, &:focus {
+        color: #D0B2C3;        
+    }
+}        
+
+.navbar-custom {
+    background-color: $nav-bar-background;
+    border-color: #58163C;    
+
+    .navbar-brand {
+        color: $nav-bar-foreground;
+        &:hover {
+            color: White;
+        }
+
+        &:active, &:focus {
+            color: $nav-bar-foreground;         
+        }
+    }
+
+    .navbar-nav {
+        font-variant: small-caps;
+        
+        .active {
+            background-color: $nav-bar-foreground;
+            a {
+                color: $nav-bar-background;  
+                &:hover, &:active, &:focus {
+                    background-color: $nav-bar-hover;
+                }
+            }
+
+            
+        }
+
+        li {
+            a {                
+                color: $nav-bar-foreground;
+                &:hover, &:active, &:focus {
+                    color: $nav-bar-background;
+                    background-color: $nav-bar-hover;
+                }
+            }            
+        }
+    }
+}
