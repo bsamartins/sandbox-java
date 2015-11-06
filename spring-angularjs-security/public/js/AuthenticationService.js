@@ -1,4 +1,4 @@
-app.factory('authenticationService', function($http, $rootScope, $q) {
+app.factory('authenticationService', function($http, $rootScope,$q,socialAuthenticationService) {
 	
 	function authenticate(credentials) {
 		var headers = credentials ? {
@@ -32,6 +32,26 @@ app.factory('authenticationService', function($http, $rootScope, $q) {
 		})
 	}
 	
+	function loginCallback(data) {
+		console.log(data)
+		if(data) {
+			$rootScope.authenticated = true
+			$rootScope.user = data
+			return data;
+		} else {
+			$rootScope.authenticated = false
+			$rootScope.user = undefined
+			return $q.reject({ status: 'USER_NOT_LOGGED_IN' });
+		}		
+	}
+	
+	function loginErrorCallback(err) {
+		console.error('login failed')
+		$rootScope.authenticated = false
+		$rootScope.user = undefined
+		return $q.reject(err);		
+	}
+	
 	init()
 	
 	return {
@@ -40,22 +60,16 @@ app.factory('authenticationService', function($http, $rootScope, $q) {
 		},
 		login: function(credentials) {
 			return authenticate(credentials)
-				.then(function(data) {
-					console.log(data)
-					if(data) {
-						$rootScope.authenticated = true
-						$rootScope.user = data
-					} else {
-						$rootScope.authenticated = false
-						$rootScope.user = undefined
-					}
-					return data;
-				}, function(e) {					
-					$rootScope.authenticated = false
-					$rootScope.user = undefined
-					return $q.reject(e);
-				})
+			.then(loginCallback, loginErrorCallback);
 		},
+		loginWithTwitter: function() {
+			return socialAuthenticationService
+			.authenticateWithTwitter()
+			.then(function() {
+				return getUser()
+			})
+			.then(loginCallback, loginErrorCallback);		
+		},		
 		logout: function() {
 			return $http.get('/api/user/logout')
 			.then(function() {

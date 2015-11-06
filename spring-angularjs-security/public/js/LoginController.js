@@ -1,15 +1,45 @@
-app.controller('loginController', function($rootScope, $scope, $http, $location, authenticationService) {	
+app.controller('loginController', function($rootScope, $scope, $http, $location, $q, authenticationService) {	
+	
+	var DENIED_MESSAGE = "Login was cancelled or not enough permissions were granted.";
+	var POPUP_ERROR_MESSAGE = "Unable to open popup. Please check your browser settings.";
+	var GENERIC_ERROR_MESSAGE = "There was a problem logging in. Please try again.";
+		
+	function clearMessages() {
+		$scope.errorMessage = undefined;
+	}
+	
 	$scope.credentials = {};
 	$scope.login = function() {
-		authenticationService.login($scope.credentials).then(function(data) {			
+		authenticationService
+		.login($scope.credentials)
+		.then(function(data) {			
 			if (data) {
 				$location.path("/");
-				$scope.error = false;
+				clearMessages();
 			} else {
-				$scope.error = true;
+				$scope.errorMessage = GENERIC_ERROR_MESSAGE;
 			}
 		}, function() {
-			$scope.error = true;
+			$scope.errorMessage = GENERIC_ERROR_MESSAGE;
 		});
 	};  
+	
+	$scope.loginWithTwitter = function() {
+		authenticationService
+		.loginWithTwitter()
+		.then(function(d) {
+			console.log('Success', d)
+			$location.path("/");
+			clearMessages();			
+		}, function(err) {
+			if(err.status == 'DENIED') {
+				$scope.errorMessage = DENIED_MESSAGE;
+			} else if(err.status == 'POPUP_NOT_OPEN') {
+				$scope.errorMessage = POPUP_ERROR_MESSAGE;
+			} else {
+				$scope.errorMessage = GENERIC_ERROR_MESSAGE;
+				console.error("Error logging in:", err);
+			}
+		});
+	}
 })

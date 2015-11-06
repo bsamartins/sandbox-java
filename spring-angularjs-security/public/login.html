@@ -1,7 +1,7 @@
 
 <h1>Login</h1>
-<div class="alert alert-danger" ng-show="error">
-	There was a problem logging in. Please try again.
+<div class="alert alert-danger" ng-show="errorMessage">
+	{{ errorMessage }}
 </div>
 <form name="loginForm" role="form" ng-submit="login()">
 	<div class="form-group">
@@ -13,4 +13,9 @@
 		<input type="password" class="form-control" id="password" name="password" ng-model="credentials.password"/>
 	</div>
 	<button type="submit" class="btn btn-custom">Submit</button>
+	<a ng-click="loginWithTwitter()" class="pull-right" href="javascript:void(0);">
+		<img src="https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png" 
+			alt="Sign in with Twitter" 
+			title="Sign in with Twitter">
+	</a>	
 </form>

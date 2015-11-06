@@ -1,76 +1,58 @@
 package org.bmartins.springangularjssecurity;
 
-import java.security.Principal;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.X509TrustManager;
 
+import org.bmartins.springangularjssecurity.repository.UserRepository;
+import org.bmartins.springangularjssecurity.repository.impl.UserRepositoryImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.ObjectPostProcessor;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.authentication.configurers.provisioning.InMemoryUserDetailsManagerConfigurer;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.context.annotation.Import;
+import org.springframework.social.config.annotation.EnableSocial;
 
 @SpringBootApplication
-@RestController
-public class StartApplication {
+@EnableSocial
+@Import({SecurityConfiguration.class, SocialConfiguration.class})
+public class StartApplication {	
 	
-	@RequestMapping("api/user")
-	public Principal user(Principal user) {
-	    return user;
-	}
+	public static void main(String args[]) throws Exception {
+		System.setProperty("http.proxyHost", "localhost"); 
+		System.setProperty("http.proxyPort", "3128");
+		System.setProperty("https.proxyHost", "localhost"); 
+		System.setProperty("https.proxyPort", "3128");
 
-	@RequestMapping("api/user/logout")
-	public void logout(HttpServletRequest request, HttpServletResponse response) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if (auth != null){    
-			new SecurityContextLogoutHandler().logout(request, response, auth);
-		}
+	    SSLContext sc  = SSLContext.getInstance("SSL");
+	    sc.init(null, new X509TrustManager[] { new TrustAllCerts() }, new java.security.SecureRandom());
+	    HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+		
+		SpringApplication.run(StartApplication.class, args);			
 	}
+	
+	public static class TrustAllCerts implements X509TrustManager {
 
-	@Configuration
-	@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
-	protected static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		@Override
-	    protected void configure(HttpSecurity http) throws Exception {
-	      http
-	      	.httpBasic()	      	
-	      .and()
-	        .authorizeRequests()
-	          .anyRequest().permitAll()
-	          .antMatchers("/api/user", "/api/user/logout").permitAll()
-	          .antMatchers("/api/**").authenticated()
-	          ;
+		public void checkClientTrusted(X509Certificate[] arg0, String arg1)
+				throws CertificateException {
+		}
+
+		@Override
+		public void checkServerTrusted(X509Certificate[] arg0, String arg1)
+				throws CertificateException {
+		}
+
+		@Override
+		public X509Certificate[] getAcceptedIssuers() {
+			return null;
 		}
 	}
 	
 	@Bean
-	public AuthenticationManager authenticationManager(ObjectPostProcessor<Object> objectPostProcessor) throws Exception {
-
-		InMemoryUserDetailsManagerConfigurer<AuthenticationManagerBuilder> builder = 
-				new AuthenticationManagerBuilder(objectPostProcessor)
-			.inMemoryAuthentication();
-	            
-		builder
-			.withUser("admin").password("password").roles( "USER" );
-
-		return builder.and().build();
+	public UserRepository userRepository() {
+		return new UserRepositoryImpl();
 	}
-	
-	public static void main(String args[]) throws Exception {
-		SpringApplication.run(StartApplication.class, args);	
-	}
-
 }

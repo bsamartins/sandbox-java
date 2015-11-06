@@ -16,7 +16,9 @@
 							role="button" 
 							aria-haspopup="true" 
 							aria-expanded="false">
-								<span class="glyphicon glyphicon-user"></span> {{user.name}} <span class="caret"></span>
+								<span class="glyphicon glyphicon-user" ng-show="!user.profileImageUrl"></span>
+								<img src="{{ user.profileImageUrl }}" class="img-circle" ng-show="user.profileImageUrl">
+								&nbsp;{{user.firstName}} {{user.lastName}} <span class="caret"></span>
 						</a>
                			<ul class="dropdown-menu">               				
                				<li>               					
