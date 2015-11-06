@@ -58,3 +58,15 @@ $nav-bar-hover: #E2C9D7;
         }
     }
 }
+
+.navbar-avatar {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    >.avatar {
+        max-height: 30px;
+    }
+}
+
+.avatar {
+    @extend .img-circle;
+}

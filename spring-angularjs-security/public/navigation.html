@@ -11,16 +11,21 @@
 				<ul class="nav navbar-nav">
 					<li ng-show="!authenticated"><a href="#/login"><span class="glyphicon glyphicon-lock"></span> Login</a></li>
 					<li ng-show="authenticated">
+					
 						<a class="dropdown-toggle" 
 							data-toggle="dropdown" 
 							role="button" 
 							aria-haspopup="true" 
-							aria-expanded="false">
-								<span class="glyphicon glyphicon-user" ng-show="!user.profileImageUrl"></span>
-								<img src="{{ user.profileImageUrl }}" class="img-circle" ng-show="user.profileImageUrl">
+							aria-expanded="false"
+							ng-class="{'navbar-avatar': user.profileImageUrl}">
+							
+								<span class="glyphicon glyphicon-user" ng-if="!user.profileImageUrl"></span>
+								<img src="{{ user.profileImageUrl }}" class="avatar" ng-if="user.profileImageUrl">
+								
 								&nbsp;{{user.firstName}} {{user.lastName}} <span class="caret"></span>
 						</a>
-               			<ul class="dropdown-menu">               				
+               			<ul class="dropdown-menu">
+               				<li role="separator" class="divider"></li>               				
                				<li>               					
                					<a href="javascript:void(0);" ng-click="logout()"><span class="glyphicon glyphicon-off"></span> Logout</a>
                				</li>
