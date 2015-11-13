@@ -12,3 +12,6 @@ target
 *.iml
 bin
 .gradle
+.sass-cache
+stylesheets
+/message-queue/build

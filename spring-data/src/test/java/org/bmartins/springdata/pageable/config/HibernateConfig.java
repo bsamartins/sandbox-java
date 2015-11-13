@@ -18,7 +18,7 @@ public class HibernateConfig {
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter(); 
 		vendorAdapter.setGenerateDdl(true); 
 		vendorAdapter.setShowSql(true);     
-    
+
 	    Properties jpaProperties = new Properties(); 
 	    jpaProperties.put("hibernate.hbm2ddl.auto", "create");
 	    jpaProperties.put("hibernate.dialect", org.hibernate.dialect.H2Dialect.class.getName());

@@ -1,0 +1,25 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'org.bmartins'
+version = '0.0.1-SNAPSHOT'
+
+description = """"""
+
+sourceCompatibility = 1.5
+targetCompatibility = 1.5
+
+
+
+repositories {
+        
+     maven { url "http://repo.maven.apache.org/maven2/" }
+     maven { url "http://10.30.188.80:8777/nexus/content/repositories/thirdparty" }
+     maven { url "http://10.30.188.80:8777/nexus/content/repositories/snapshots/" }
+     maven { url "http://10.30.188.80:8777/nexus/content/repositories/releases/" }
+}
+dependencies {
+    compile group: 'org.apache.activemq', name: 'activemq-core', version:'5.7.0'
+    compile group: 'org.slf4j', name: 'slf4j-api', version:'1.7.5'
+    compile group: 'org.slf4j', name: 'slf4j-simple', version:'1.7.5'
+}

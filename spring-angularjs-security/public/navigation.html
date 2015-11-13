@@ -19,12 +19,16 @@
 							aria-expanded="false"
 							ng-class="{'navbar-avatar': user.profileImageUrl}">
 							
-								<span class="glyphicon glyphicon-user" ng-if="!user.profileImageUrl"></span>
-								<img src="{{ user.profileImageUrl }}" class="avatar" ng-if="user.profileImageUrl">
-								
+								<span class="glyphicon glyphicon-user"></span>
 								&nbsp;{{user.firstName}} {{user.lastName}} <span class="caret"></span>
 						</a>
                			<ul class="dropdown-menu">
+               				<li class="navbar-profile-badge">
+               					<div>
+               						<img ng-src="{{ user.profileImageUrl }}" class="avatar" ng-if="user.profileImageUrl" style="float:left;">
+               						{{user.firstName}} {{user.lastName}}
+               					</div>
+               				</li>								               			
                				<li role="separator" class="divider"></li>               				
                				<li>               					
                					<a href="javascript:void(0);" ng-click="logout()"><span class="glyphicon glyphicon-off"></span> Logout</a>
