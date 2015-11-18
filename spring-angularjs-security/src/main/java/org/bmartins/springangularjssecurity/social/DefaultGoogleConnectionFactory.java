@@ -8,5 +8,4 @@ public class DefaultGoogleConnectionFactory extends GoogleConnectionFactory {
 		super(clientId, clientSecret);
 		setScope("profile");
 	}
-
 }
