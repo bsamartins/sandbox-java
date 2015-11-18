@@ -10,6 +10,8 @@
     	</encoder>
   	</appender>
   	
+  	<logger name="org.apache" level="OFF" />
+  	<logger name="org.hibernate" level="OFF" />
 	<logger name="org.springframework" level="INFO" />
 	<logger name="org.bmartins" level="DEBUG" />
 	

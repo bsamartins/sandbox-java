@@ -24,22 +24,32 @@ app.controller('loginController', function($rootScope, $scope, $http, $location,
 		});
 	};  
 	
+	function handleLoginSuccess(d) {
+		console.log('Success', d)
+		$location.path("/");
+		clearMessages();					
+	}
+	
+	function handleLoginError(err) {
+		if(err.status == 'DENIED') {
+			$scope.errorMessage = DENIED_MESSAGE;
+		} else if(err.status == 'POPUP_NOT_OPEN') {
+			$scope.errorMessage = POPUP_ERROR_MESSAGE;
+		} else {
+			$scope.errorMessage = GENERIC_ERROR_MESSAGE;
+			console.error("Error logging in:", err);
+		}
+	}
+	
 	$scope.loginWithTwitter = function() {
 		authenticationService
 		.loginWithTwitter()
-		.then(function(d) {
-			console.log('Success', d)
-			$location.path("/");
-			clearMessages();			
-		}, function(err) {
-			if(err.status == 'DENIED') {
-				$scope.errorMessage = DENIED_MESSAGE;
-			} else if(err.status == 'POPUP_NOT_OPEN') {
-				$scope.errorMessage = POPUP_ERROR_MESSAGE;
-			} else {
-				$scope.errorMessage = GENERIC_ERROR_MESSAGE;
-				console.error("Error logging in:", err);
-			}
-		});
+		.then(handleLoginSuccess, handleLoginError);
+	}
+	
+	$scope.loginWithGoogle = function() {
+		authenticationService
+		.loginWithGoogle()
+		.then(handleLoginSuccess, handleLoginError);
 	}
 })

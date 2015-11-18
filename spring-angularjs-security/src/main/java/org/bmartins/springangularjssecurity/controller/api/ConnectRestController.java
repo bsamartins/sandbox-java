@@ -207,8 +207,8 @@ public class ConnectRestController implements InitializingBean {
 		try {
 			OAuth1ConnectionFactory<?> connectionFactory = (OAuth1ConnectionFactory<?>) connectionFactoryLocator.getConnectionFactory(providerId);
 			Connection<?> connection = connectSupport.completeConnection(connectionFactory, request);
-			addConnection(connection, connectionFactory, request);
 			authenticate(connection);
+			addConnection(connection, connectionFactory, request);			
 			model.put("status", "SUCCESS");
 		} catch (Exception e) {			
 			model.put(PROVIDER_ERROR_ATTRIBUTE, e.getMessage());
@@ -230,7 +230,9 @@ public class ConnectRestController implements InitializingBean {
 		try {
 			OAuth2ConnectionFactory<?> connectionFactory = (OAuth2ConnectionFactory<?>) connectionFactoryLocator.getConnectionFactory(providerId);
 			Connection<?> connection = connectSupport.completeConnection(connectionFactory, request);
+			authenticate(connection);
 			addConnection(connection, connectionFactory, request);
+			model.put("status", "SUCCESS");
 		} catch (Exception e) {
 			model.put(PROVIDER_ERROR_ATTRIBUTE, e.getMessage());
 			logger.warn("Exception while handling OAuth2 callback (" + e.getMessage() + "). Redirecting to " + providerId +" connection status page.");

@@ -46,7 +46,7 @@ app.factory('authenticationService', function($http, $rootScope,$q,socialAuthent
 	}
 	
 	function loginErrorCallback(err) {
-		console.error('login failed')
+		console.error('login failed', err)
 		$rootScope.authenticated = false
 		$rootScope.user = undefined
 		return $q.reject(err);		
@@ -65,11 +65,15 @@ app.factory('authenticationService', function($http, $rootScope,$q,socialAuthent
 		loginWithTwitter: function() {
 			return socialAuthenticationService
 			.authenticateWithTwitter()
-			.then(function() {
-				return getUser()
-			})
+			.then(getUser)
 			.then(loginCallback, loginErrorCallback);		
-		},		
+		},
+		loginWithGoogle: function() {
+			return socialAuthenticationService
+			.authenticateWithGoogle()
+			.then(getUser)
+			.then(loginCallback, loginErrorCallback);		
+		},				
 		logout: function() {
 			return $http.get('/api/user/logout')
 			.then(function() {

@@ -1,17 +1,5 @@
-buildscript {
-    repositories {
-        maven { url "http://jcenter.bintray.com" }
-        maven { url "http://dl.bintray.com/robfletcher/gradle-plugins" }
-    }
-    dependencies {
-        classpath "com.github.robfletcher:compass-gradle-plugin:2.0.5"
-        classpath 'org.jruby.extras:jaffl:0.5.12'
-    }
-}
-
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
-apply plugin: "com.github.robfletcher.compass"
 
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
@@ -31,7 +19,8 @@ repositories {
 dependencies {
     // The production code uses the SLF4J logging API at compile time
     compile 'org.slf4j:slf4j-api:1.7.7'
-    
+    compile 'org.apache.commons:commons-lang3:3.4'
+        
     compile 'org.springframework.boot:spring-boot-starter-web:1.2.7.RELEASE'
     compile 'org.springframework.boot:spring-boot-starter-redis:1.2.7.RELEASE'
         
@@ -45,19 +34,11 @@ dependencies {
     
     compile 'org.springframework.social:spring-social-security:1.1.2.RELEASE'
     compile 'org.springframework.social:spring-social-twitter:1.1.0.RELEASE'
-
-	compile 'org.apache.commons:commons-lang3:3.4'
+    compile 'org.springframework.social:spring-social-google:1.0.0.RELEASE'
 
     // Declare the dependency for your favourite test framework you want to use in your tests.
     // TestNG is also supported by the Gradle Test task. Just change the
     // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
     // 'test.useTestNG()' to your build script.
     testCompile "junit:junit:4.11"
-}
-
-compass {
-  cssDir = file("public/stylesheets")
-  sassDir = file("public/sass")
-
-  trace = true
 }
