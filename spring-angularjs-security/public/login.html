@@ -3,24 +3,34 @@
 <div class="alert alert-danger" ng-show="errorMessage">
 	{{ errorMessage }}
 </div>
-<form name="loginForm" role="form" ng-submit="login()">
-	<div class="form-group">
-		<label for="username">Username:</label>
-		<input type="text" class="form-control" id="username" name="username" ng-model="credentials.username"/>
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-body">		
+				<form name="loginForm" role="form" ng-submit="login()">
+					<div class="form-group">
+						<label for="username">Username:</label>
+						<input type="text" class="form-control" id="username" name="username" ng-model="credentials.username"/>
+					</div>
+					<div class="form-group">
+						<label for="password">Password:</label> 
+						<input type="password" class="form-control" id="password" name="password" ng-model="credentials.password"/>
+					</div>
+					<button type="submit" class="btn btn-custom">Submit</button>
+				</form>
+			</div>
+		</div>		
 	</div>
-	<div class="form-group">
-		<label for="password">Password:</label> 
-		<input type="password" class="form-control" id="password" name="password" ng-model="credentials.password"/>
+	<div class="col-md-6">
+		<div>
+			<a ng-click="loginWithTwitter()" class="btn btn-block btn-social btn-twitter pull-right" href="javascript:void(0);">
+				<span class="fa fa-twitter"></span>
+				Sign in with Twitter
+			</a>	
+			<a ng-click="loginWithGoogle()" class="btn btn-block btn-social btn-google pull-right" href="javascript:void(0);">
+				<span class="fa fa-google"></span>
+				Sign in with Google
+			</a>
+		</div>		
 	</div>
-	<button type="submit" class="btn btn-custom">Submit</button>
-	<a ng-click="loginWithTwitter()" class="pull-right" href="javascript:void(0);">
-		<img src="https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png" 
-			alt="Sign in with Twitter" 
-			title="Sign in with Twitter">
-	</a>	
-	<a ng-click="loginWithGoogle()" class="pull-right" href="javascript:void(0);">
-		<img src="https://developers.google.com/identity/images/btn_google_signin_light_normal_web.png" 
-			alt="Sign in with Google" 
-			title="Sign in with Google">
-	</a>	
-</form>
+</div>
