@@ -52,4 +52,10 @@ app.controller('loginController', function($rootScope, $scope, $http, $location,
 		.loginWithGoogle()
 		.then(handleLoginSuccess, handleLoginError);
 	}
+	
+	$scope.loginWithGithub = function() {
+		authenticationService
+		.loginWithGithub()
+		.then(handleLoginSuccess, handleLoginError);
+	}
 })

@@ -47,6 +47,9 @@ app.factory('socialAuthenticationService', function($http, $rootScope, $q, $http
 		authenticateWithTwitter: function() {
 			return connect('twitter');
 		},
+		authenticateWithGithub: function() {
+			return connect('github');
+		},		
 		authenticateWithGoogle: function() {
 			return connect('google');
 		}
