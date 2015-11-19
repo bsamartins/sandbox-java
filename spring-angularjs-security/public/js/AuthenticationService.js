@@ -79,7 +79,13 @@ app.factory('authenticationService', function($http, $rootScope,$q,socialAuthent
 			.authenticateWithGithub()
 			.then(getUser)
 			.then(loginCallback, loginErrorCallback);		
-		},						
+		},
+		loginWithLinkedin: function() {
+			return socialAuthenticationService
+			.authenticateWithLinkedin()
+			.then(getUser)
+			.then(loginCallback, loginErrorCallback);		
+		},								
 		logout: function() {
 			return $http.get('/api/user/logout')
 			.then(function() {

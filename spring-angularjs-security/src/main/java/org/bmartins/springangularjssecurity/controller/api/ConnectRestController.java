@@ -235,7 +235,7 @@ public class ConnectRestController implements InitializingBean {
 			model.put("status", "SUCCESS");
 		} catch (Exception e) {
 			model.put(PROVIDER_ERROR_ATTRIBUTE, e.getMessage());
-			logger.warn("Exception while handling OAuth2 callback (" + e.getMessage() + "). Redirecting to " + providerId +" connection status page.");
+			logger.warn("Exception while handling OAuth2 callback (" + e.getMessage() + "). Redirecting to " + providerId +" connection status page.", e);
 		}
 		
 		return authCompleted(model);

@@ -58,4 +58,10 @@ app.controller('loginController', function($rootScope, $scope, $http, $location,
 		.loginWithGithub()
 		.then(handleLoginSuccess, handleLoginError);
 	}
+	
+	$scope.loginWithLinkedin = function() {
+		authenticationService
+		.loginWithLinkedin()
+		.then(handleLoginSuccess, handleLoginError);
+	}
 })

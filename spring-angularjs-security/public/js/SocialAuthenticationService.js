@@ -49,7 +49,10 @@ app.factory('socialAuthenticationService', function($http, $rootScope, $q, $http
 		},
 		authenticateWithGithub: function() {
 			return connect('github');
-		},		
+		},
+		authenticateWithLinkedin: function() {
+			return connect('linkedin');
+		},				
 		authenticateWithGoogle: function() {
 			return connect('google');
 		}

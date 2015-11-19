@@ -1,7 +1,10 @@
 package org.bmartins.springangularjssecurity.model;
 
 public enum Provider { 
-	TWITTER("twitter"); 
+	TWITTER("twitter"),
+	GOOGLE("google"),
+	LINKEDIN("linkedin"),
+	GITHUB("github");
 	
 	private String providerId;
 
@@ -14,12 +17,23 @@ public enum Provider {
 	}
 
 	public static Provider fromString(String providerId) {
+		Provider provider = fromStringSafe(providerId);
+		if(provider != null) {
+			return provider;
+		} else {
+			throw new IllegalArgumentException("No match found for providerId: " + providerId);
+		}		
+	}
+
+	private static Provider fromStringSafe(String providerId) {
+		Provider result = null;
 		for(Provider provider: values()) {
 			if(provider.providerId.equals(providerId)) {
-				return provider;
+				result = provider;
+				break;
 			}
-		}
-		return null;
+		}		
+		return result;
 	}
 
 }
