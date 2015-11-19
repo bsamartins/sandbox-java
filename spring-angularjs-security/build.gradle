@@ -35,7 +35,7 @@ dependencies {
     compile 'org.springframework.social:spring-social-security:1.1.2.RELEASE'
     compile 'org.springframework.social:spring-social-twitter:1.1.0.RELEASE'
     compile 'org.springframework.social:spring-social-google:1.0.0.RELEASE'
-    compile 'org.springframework.social:spring-social-github:1.0.0.M4'
+    compile 'org.springframework.social:spring-social-github:1.0.0.BUILD-SNAPSHOT'
     compile 'org.springframework.social:spring-social-linkedin:1.0.0.RELEASE'
 
     // Declare the dependency for your favourite test framework you want to use in your tests.
