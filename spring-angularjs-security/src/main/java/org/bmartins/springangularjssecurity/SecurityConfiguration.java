@@ -1,6 +1,5 @@
 package org.bmartins.springangularjssecurity;
 
-import org.bmartins.springangularjssecurity.service.UserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Configuration;
@@ -13,9 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
-	@Autowired
-	private UserDetailsService userDetailsService;
-
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	
