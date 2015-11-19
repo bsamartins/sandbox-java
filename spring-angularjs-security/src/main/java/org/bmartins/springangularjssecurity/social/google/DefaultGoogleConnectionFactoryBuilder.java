@@ -1,4 +1,4 @@
-package org.bmartins.springangularjssecurity.social;
+package org.bmartins.springangularjssecurity.social.google;
 
 import java.util.ArrayList;
 import java.util.Collections;

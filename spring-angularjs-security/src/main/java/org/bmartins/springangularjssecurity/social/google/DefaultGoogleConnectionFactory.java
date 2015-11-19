@@ -1,4 +1,4 @@
-package org.bmartins.springangularjssecurity.social;
+package org.bmartins.springangularjssecurity.social.google;
 
 import org.springframework.social.google.connect.GoogleConnectionFactory;
 

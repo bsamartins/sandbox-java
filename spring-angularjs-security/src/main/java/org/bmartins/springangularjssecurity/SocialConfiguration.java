@@ -1,7 +1,7 @@
 package org.bmartins.springangularjssecurity;
 
-import org.bmartins.springangularjssecurity.social.DefaultGoogleConnectionFactoryBuilder;
-import org.bmartins.springangularjssecurity.social.DefaultLinkedInConnectionFactory;
+import org.bmartins.springangularjssecurity.social.google.DefaultGoogleConnectionFactoryBuilder;
+import org.bmartins.springangularjssecurity.social.linkedin.DefaultLinkedInConnectionFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.social.config.annotation.ConnectionFactoryConfigurer;

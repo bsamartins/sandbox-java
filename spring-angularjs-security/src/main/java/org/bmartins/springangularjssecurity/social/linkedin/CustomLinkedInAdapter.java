@@ -1,4 +1,4 @@
-package org.bmartins.springangularjssecurity.social;
+package org.bmartins.springangularjssecurity.social.linkedin;
 
 import org.springframework.social.connect.UserProfile;
 import org.springframework.social.connect.UserProfileBuilder;
