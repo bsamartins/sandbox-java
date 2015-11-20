@@ -13,12 +13,18 @@ repositories {
 
 dependencies {
     compile 'org.slf4j:slf4j-api:1.7.12'
+
     compile 'org.apache.commons:commons-collections4:4.0'
+    compile 'org.apache.commons:commons-lang3:3.4'
+    compile 'commons-io:commons-io:2.4'
+
     //compile 'net.sf.jasperreports:jasperreports:6.2.0'
     //compile 'com.itextpdf:itextpdf:5.5.7'
     compile 'org.apache.pdfbox:pdfbox:2.0.0-RC1'
     compile 'org.apache.pdfbox:pdfbox-tools:2.0.0-RC1'
+
     compile 'org.apache.xmlgraphics:batik-svggen:1.8'
+    compile 'org.apache.xmlgraphics:batik-dom:1.8'
 
     testCompile 'junit:junit:4.12'
 }
