@@ -1,0 +1,12 @@
+version: '2'
+services:
+  registry:
+    build: ./registry/
+    image: bsamartins-docker-registry.bintray.io/cloud-microservices/registry
+    expose:
+      - '8761'
+  test-service:
+    build: ./test-service/
+    image: bsamartins-docker-registry.bintray.io/cloud-microservices/test-service
+    links:
+      - registry

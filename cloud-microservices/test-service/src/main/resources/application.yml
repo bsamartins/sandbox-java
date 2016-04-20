@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: test-service
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://registry:8761/eureka/
