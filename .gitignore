@@ -15,3 +15,8 @@ bin
 .sass-cache
 stylesheets
 /message-queue/build
+.idea
+cloud-microservices/gateway/build
+cloud-microservices/registry/build
+cloud-microservices/test-service/build
+cloud-microservices/config/build
