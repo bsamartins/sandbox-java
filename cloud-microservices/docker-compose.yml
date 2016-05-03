@@ -1,12 +1,29 @@
 version: '2'
 services:
+
+  config:
+    build: ./config/
+    image: bsamartins-docker-registry.bintray.io/cloud-microservices/config
+    expose:
+      - '8888'
+
   registry:
     build: ./registry/
     image: bsamartins-docker-registry.bintray.io/cloud-microservices/registry
     expose:
       - '8761'
+
+  gateway:
+    build: ./gateway/
+    image: bsamartins-docker-registry.bintray.io/cloud-microservices/gateway
+    ports:
+      - 9000:8080
+    links:
+      - registry
+
   test-service:
     build: ./test-service/
     image: bsamartins-docker-registry.bintray.io/cloud-microservices/test-service
     links:
       - registry
+      - config

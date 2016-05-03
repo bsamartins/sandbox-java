@@ -1,5 +1,5 @@
 rootProject.name = 'cloud-microservices'
-include 'gateway'
+include 'config'
 include 'registry'
+include 'gateway'
 include 'test-service'
-
