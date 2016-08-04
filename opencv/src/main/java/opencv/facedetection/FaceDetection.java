@@ -13,15 +13,15 @@ import org.opencv.objdetect.CascadeClassifier;
 public class FaceDetection {
 	
 
-	private static final String FACE_CASCADE_NAME = "facade/haarcascade_frontalface_alt.xml";
-	private static final String EYES_CASCADE_NAME = "facade/haarcascade_eye_tree_eyeglasses.xml";
+	private static final String FACE_CASCADE_NAME = "/facade/haarcascade_frontalface_alt.xml";
+	private static final String EYES_CASCADE_NAME = "/facade/haarcascade_eye_tree_eyeglasses.xml";
 	
 	private static CascadeClassifier faceCascade;
 	private static CascadeClassifier eyesCascade;
 
 	static {
-		faceCascade = new CascadeClassifier(FACE_CASCADE_NAME);
-		eyesCascade = new CascadeClassifier(EYES_CASCADE_NAME);
+		faceCascade = new CascadeClassifier(FaceDetection.class.getResource(FACE_CASCADE_NAME).getPath());
+		eyesCascade = new CascadeClassifier(FaceDetection.class.getResource(EYES_CASCADE_NAME).getPath());
 	}
 	
 	public static Mat detect(Mat frame) throws Exception {
