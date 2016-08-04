@@ -20,3 +20,5 @@ cloud-microservices/gateway/build
 cloud-microservices/registry/build
 cloud-microservices/test-service/build
 cloud-microservices/config/build
+/docker-manager/.nb-gradle/
+opencv/build

@@ -1,0 +1,6 @@
+rootProject.name = 'docker-manager'
+
+include 'services'
+include 'ui'
+include 'engine'
+

@@ -1,0 +1,8 @@
+apply plugin: 'application'
+
+dependencies {
+    compile project(':engine')
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.1.7'
+}
+
+mainClassName = 'com.github.bsamartins.dockermanager.ui.Application'
