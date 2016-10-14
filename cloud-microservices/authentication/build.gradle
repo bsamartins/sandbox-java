@@ -1,0 +1,6 @@
+dependencies {
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compile 'org.springframework.security.oauth:spring-security-oauth2:2.0.9.RELEASE'
+}
+
+mainClassName = "com.github.bsamartins.cloudmicroservices.authentication.AuthenticationApplication"

@@ -12,6 +12,8 @@ services:
     image: bsamartins-docker-registry.bintray.io/cloud-microservices/registry
     expose:
       - '8761'
+    links:
+      - config
 
   gateway:
     build: ./gateway/
@@ -20,10 +22,13 @@ services:
       - 9000:8080
     links:
       - registry
+      - config
 
   test-service:
     build: ./test-service/
     image: bsamartins-docker-registry.bintray.io/cloud-microservices/test-service
+    expose:
+      - 8080
     links:
       - registry
       - config

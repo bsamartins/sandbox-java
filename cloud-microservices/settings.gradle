@@ -3,3 +3,5 @@ include 'config'
 include 'registry'
 include 'gateway'
 include 'test-service'
+include 'authentication'
+
