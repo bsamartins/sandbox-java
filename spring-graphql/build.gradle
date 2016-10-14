@@ -1,0 +1,33 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'spring-boot'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    jcenter()
+    maven { url  "http://dl.bintray.com/oembedler/maven" }
+}
+
+dependencies {
+    compile 'com.embedler.moon.graphql.boot.autoconfigure:graphql-spring-boot-autoconfigure:2.1.0-2016-04-29T09-27-45'
+    compile 'com.embedler.moon.graphql.boot.starter:graphiql-spring-boot-starter:2.1.0-2016-04-29T09-27-45'
+
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    compile 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final'
+    compile 'com.h2database:h2'
+    compile 'org.slf4j:slf4j-api:1.7.21'
+
+    testCompile 'junit:junit:4.12'
+}
