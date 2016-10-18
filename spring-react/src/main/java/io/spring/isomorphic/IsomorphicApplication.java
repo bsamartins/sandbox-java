@@ -43,7 +43,8 @@ public class IsomorphicApplication {
         configurer.setEngineName("nashorn");
         configurer.setScripts("static/polyfill.js",
                 "static/lib/js/ejs.min.js",
-                "/META-INF/resources/webjars/react/0.13.1/react.js",
+                "/META-INF/resources/webjars/react/15.3.1/react.js",
+                "/META-INF/resources/webjars/react/15.3.1/react-dom-server.js",
 //                "/META-INF/resources/webjars/react/0.13.1/JSXTransformer.js",
                 "static/render.js",
                 "static/output/comment.js",
