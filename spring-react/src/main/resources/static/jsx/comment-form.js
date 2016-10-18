@@ -1,11 +1,13 @@
 var CommentForm = React.createClass({
+    getInitialState: function() {
+        return {};
+    },
     handleSubmit: function ( event ) {
 
         event.preventDefault();
 
-        // this should follow React best practices and use states and binding
-        var author = this.refs.author.value.trim();
-        var content = this.refs.content.value.trim();
+        var author = this.state.author.trim();
+        var content = this.state.content.trim();
 
         // validate
         if (!content || !author) {
@@ -13,17 +15,22 @@ var CommentForm = React.createClass({
         }
 
         this.props.onCommentSubmit({author: author, content: content});
-        this.refs.author.value = "";
-        this.refs.content.value = "";
+        this.setState({ author: "", content: "" });
+    },
+    handleAuthorChange: function(e) {
+        this.setState({ author: e.target.value });
+    },
+    handleContentChange: function(e) {
+        this.setState({ content: e.target.value });
     },
     render: function () {
         return (
             <form ref="form" className="navbar-form navbar-right" onSubmit={ this.handleSubmit }>
                 <div className="form-group">
-                    <input ref="author" placeholder="Your name" className="form-control"/>
+                    <input ref="author" placeholder="Your name" className="form-control" value={this.state.author} onChange={this.handleAuthorChange} />
                 </div>
                 <div className="form-group">
-                    <input ref="content" placeholder="Say something..." className="form-control "/>
+                    <input ref="content" placeholder="Say something..." className="form-control " value={this.state.content} onChange={this.handleContentChange} />
                 </div>
                 <button type="submit" className="btn btn-success">Post comment</button>
             </form>
