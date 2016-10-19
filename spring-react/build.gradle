@@ -1,18 +1,16 @@
 buildscript {
   ext {
-    springBootVersion = '1.3.0.RELEASE'
+    springBootVersion = '1.4.1.RELEASE'
   }
   repositories {
     mavenLocal()
     mavenCentral()
+    maven { url "https://plugins.gradle.org/m2/" }
+    maven { url "http://dl.bintray.com/errbuddy/plugins" }
   }
   dependencies {
     classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
   }
-}
-
-plugins {
-  id 'net.eikehirsch.react' version '0.3.1'
 }
 
 apply plugin: 'java'
@@ -33,17 +31,24 @@ repositories {
 dependencies {
   compile("org.springframework.boot:spring-boot-starter-web")
   compile("org.webjars:react:15.3.1")
+  compile 'ch.qos.logback:logback-classic:1.1.7'
+
   testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
-jsx {
-  sourcesDir = 'src/main/resources/static/jsx'
-  destDir    = 'src/main/resources/static/output'
-}
-
 task wrapper(type: Wrapper) {
-  gradleVersion = '2.3'
+  gradleVersion = '3.1'
 }
 
-processResources.dependsOn('jsx')
-	
+task npmInstall(type: Exec) {
+  commandLine 'npm', 'install'
+}
+
+task compileJsx(type: Exec) {
+  commandLine 'node_modules/babel-cli/bin/babel.js', 'src/assets/javascripts',
+          '-d', "${project.buildDir}/resources/main/static/assets",
+          "--source-maps"
+}
+
+compileJsx.dependsOn('npmInstall')
+processResources.dependsOn('compileJsx')

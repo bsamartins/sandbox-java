@@ -1,12 +1,20 @@
 package io.spring.isomorphic;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistration;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
+import org.springframework.web.servlet.resource.ResourceResolver;
 import org.springframework.web.servlet.view.script.ScriptTemplateConfigurer;
 import org.springframework.web.servlet.view.script.ScriptTemplateViewResolver;
+
+import javax.annotation.PostConstruct;
 
 @SpringBootApplication
 public class IsomorphicApplication {
@@ -46,10 +54,12 @@ public class IsomorphicApplication {
                 "/META-INF/resources/webjars/react/15.3.1/react.js",
                 "/META-INF/resources/webjars/react/15.3.1/react-dom-server.js",
 //                "/META-INF/resources/webjars/react/0.13.1/JSXTransformer.js",
+
                 "static/render.js",
-                "static/output/comment.js",
-                "static/output/comment-form.js",
-                "static/output/comment-list.js");
+
+                "static/assets/comment.js",
+                "static/assets/comment-form.js",
+                "static/assets/comment-list.js");
         configurer.setRenderFunction("render");
         configurer.setSharedEngine(false);
         return configurer;
